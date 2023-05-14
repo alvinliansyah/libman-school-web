@@ -1,0 +1,702 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+* {
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+:root {
+	--grey: #F1F0F6;
+	--dark-grey: #8D8D8D;
+	--light: #fff;
+	--dark: #000;
+	--green: #81D43A;
+	--light-green: #E3FFCB;
+	--blue: #1775F1;
+	--light-blue: #D0E4FF;
+	--dark-blue: #0C5FCD;
+	--red: #FC3B56;
+}
+body {
+  background-color: none;
+}
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+.loader-wrapper {
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 65, 196, 1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 300;
+}
+.loader {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	position: relative;
+	border: 4px solid #Fff;
+	animation: loader 2s infinite ease;
+  }
+  
+  .loader-inner {
+	vertical-align: top;
+	display: inline-block;
+	width: 100%;
+	background-color: #fff;
+	animation: loader-inner 2s infinite ease-in;
+  }
+  .disappear{animation: vanish 1s forwards;}
+@keyframes vanish {
+	100%{opacity: 0;visibility: hidden;}
+}
+
+
+  @keyframes loader {
+	0% {
+	  transform: rotate(0deg);
+	}
+	
+	25% {
+	  transform: rotate(180deg);
+	}
+	
+	50% {
+	  transform: rotate(180deg);
+	}
+	
+	75% {
+	  transform: rotate(360deg);
+	}
+	
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  
+  @keyframes loader-inner {
+	0% {
+	  height: 0%;
+	}
+	
+	25% {
+	  height: 0%;
+	}
+	
+	50% {
+	  height: 100%;
+	}
+	
+	75% {
+	  height: 100%;
+	}
+	
+	100% {
+	  height: 0%;
+	}
+  }
+/* navbar styling */
+nav{
+  background: rgba(0, 65, 196, 1);
+	height: 64px;
+	padding: 0 20px;
+	display: flex;
+	align-items: center;
+	grid-gap: 28px;
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+nav .navbar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+nav .navbar .logo{
+  font-size: 24px;
+display: flex;
+align-items: center;
+height: 50px;
+font-weight: 700;
+color: var(--light);
+position: sticky;
+top: 0;
+left: 0;
+z-index: -10;
+transition: all .3s ease;
+padding: 0 0px;
+}
+nav .navbar .logo img{
+width: 30px;
+}
+nav .navbar .logo .logo{
+font-size: 22px;
+font-weight: 600;
+color: #fff;
+margin-left: 17px;
+}
+nav .navbar .menu{
+  display: flex;
+  position: relative;
+}
+nav .navbar .menu li{
+  list-style: none;
+  margin: 0 0px;
+}
+.navbar .menu a{
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 600;
+  padding: 10px 6px;
+  transition: all 0.3s ease;
+}
+.navbar .menu a:hover{
+  color: #4070f4;
+}
+
+/* Side Navigation Menu Button CSS */
+nav .menu-btn,
+.navbar .menu .cancel-btn{
+  position: absolute;
+  color: #fff;
+  right: 30px;
+  top: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: none;
+}
+nav .menu-btn{
+  color: #ffffff;
+}
+nav.sticky .menu-btn{
+  color: #FFF;
+}
+.navbar .menu .menu-btn{
+  color: #fff;
+}
+
+/* home section styling */
+.home{
+  height: 92vh;
+  width: 100%;
+  background: url("img/Group 3.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.home .home-content{
+  width: 90%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.home .home-content .menu{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  
+}
+.home .home-content .menu .container{
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  perspective: 2700px;
+  border-radius: 15px 15px 15px 15px;
+}
+.container .cover{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 50%;
+  z-index: 98;
+  transition: all 1s ease;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  border-radius: 15px 15px 15px 15px;
+}
+.container #flip:checked ~ .cover{
+  transform: rotateY(-180deg);
+  
+}
+ .container .cover .front,
+ .container .cover .back{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.cover .back{
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+ 
+}
+.container .cover::before,
+.container .cover::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  background: url('img/wander-fleur-1lmGTHdQdjM-unsplash2.jpg');
+  opacity: 100%;
+  z-index: 10.5;
+  
+}
+.container .cover::after{
+  opacity: 0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  
+}
+.container .cover img{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 10;
+  border-radius: 15px 15px 15px 15px;
+}
+.container .cover .text{
+  position: absolute;
+  z-index: 130;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 40px;
+}
+.cover .text .text-1,
+.cover .text .text-2{
+  font-size: 26px;
+  font-weight: 1000;
+  color: #fff;
+  text-align: center;
+
+}
+.cover .text .text-2{
+  font-size: 20px;
+  font-weight: 300;
+}
+.container .forms{
+   margin-top: 30px;
+  z-index: -1;
+}
+.container .form-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form-content .login-form,
+.form-content .forgetPassword-form{
+  width: calc(100% / 2 - 25px);
+}
+
+.forms .form-content .input-boxes{
+  margin-top: 20px;
+  border-radius: 6px;
+
+}
+.forms .form-content .input-boxes .field{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  
+}
+.field input,
+.forms .form-content .input-box{
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid#CACACA;
+  border-radius: 6px;
+  
+}
+.form-content .input-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: 1px solid#CACACA;
+  border-radius: 6px;
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: 400;
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.forms .form-content .text{
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+}
+.forms .form-content .text a{
+  text-decoration: none;
+}
+.forms .form-content .text a:hover{
+  text-decoration: none;
+}
+.forms .form-content .button{
+  color: #fff;
+  margin-top: 40px;
+}
+.forms .form-content .button input{
+  color: #fff;
+  background: #1775F1;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.forms .form-content .button input:hover{
+  background: #016dcb;
+}
+.forms .form-content label{
+  color: #016dcb;
+  cursor: pointer;
+}
+.forms .form-content label:hover{
+  text-decoration: none;
+}
+.forms .form-content .login-text,
+.forms .form-content .forgetPassword-text{
+  text-align: center;
+  margin-top: 25px;
+}
+.container #flip{
+  display: none;
+}
+header{
+  font-size: 24px;
+  font-weight: 600;
+  color: #232836;
+  text-align: center;
+}
+p{
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(138, 138, 142, 1);
+  text-align: center;
+}
+@media (max-width: 730px) {
+  .container .cover{
+    display: none;
+  }
+  .form-content .login-form,
+  .form-content .forgetPassword-form{
+    width: 100%;
+  }
+  .form-content .forgetPassword-form{
+    display: none;
+  }
+  .container #flip:checked ~ .forms .forgetPassword-form{
+    display: block;
+  }
+  .container #flip:checked ~ .forms .login-form{
+    display: none;
+  }
+}
+
+/* About Section Styling */
+/* Those Elements Where We Have Apply Same CSS,
+ I'm Selecting Directly 'Section Tag' and 'Class'  */
+section{
+  padding-top: 40px;
+}
+section .content{
+  width: 80%;
+  margin: 40px auto;
+  font-family: 'Poppins', sans-serif;
+}
+.tentang_aplikasi .tentang_aplikasi-details{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+section .title{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+section .title span{
+  color: #0E2431;
+  font-size: 25px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 8px;
+}
+section .title span::before,
+section .title span::after{
+  content: '';
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #4070f4;
+  left: 0;
+  bottom: 0;
+}
+section .title span::after{
+  bottom: -7px;
+  width: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tentang_aplikasi .tentang_aplikasi-details .left{
+  width: 45%;
+}
+.tentang_aplikasi .left img{
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.tentang_aplikasi-details .text{
+  width: 100%;
+}
+section  .topic{
+  color: rgba(138, 138, 142, 1);
+  font-size: 13.5px;
+  margin-bottom: 10px;
+}
+.tentang_aplikasi-details .text p{
+  text-align: justify;
+  color: #0E2431;
+  font-size: 13.5px;
+}
+
+/* Contact Me CSS */
+.pelayanan_pelanggan{
+  background: #e6f3ff;
+}
+.pelayanan_pelanggan .content{
+  margin: 0 auto;
+  padding: 30px 0;
+}
+.pelayanan_pelanggan .text{
+  width: 80%;
+  text-align: center;
+  margin: auto;
+}
+.pelayanan_pelanggan .content .table{
+	width: 71%;
+	border-collapse: collapse;
+}
+
+.pelayanan_pelanggan .content .table td,.table th{
+  padding:8px 15px;
+    border-right-width: 1.5px;
+    border-left-width: 1.5px;
+    border-top-style: none;
+    border-right-style: normal;
+    border-bottom-style: none;
+    border-left-style: normal;
+    border-right-color: rgba(138, 138, 142, 1);
+    border-left-color: rgba(138, 138, 142, 1);
+  text-align: center;
+  font-size:16px;
+}
+
+.pelayanan_pelanggan .content .table th{
+  font-weight: normal;
+  font-size: 14px;
+	color:rgba(138, 138, 142, 1);
+}
+.pelayanan_pelanggan .content .table td{
+  font-size: 14px;
+	color:rgba(138, 138, 142, 1);
+}
+
+.pelayanan_pelanggan .content .table tbody tr:nth-child(even){
+	background-color: #f5f5f5;
+}
+
+/*responsive*/
+
+@media(max-width: 500px){
+	.table thead{
+		display: none;
+	}
+
+	.table, .table tbody, .table tr, .table td{
+		display: block;
+		width: 100%;
+	}
+	.table tr{
+		margin-bottom:15px;
+	}
+	.table td{
+		text-align: right;
+		padding-left: 50%;
+		text-align: right;
+		position: relative;
+	}
+	.table td::before{
+		content: attr(data-label);
+		position: absolute;
+		left:0;
+		width: 50%;
+		padding-left:15px;
+		font-size:15px;
+		font-weight: bold;
+		text-align: left;
+	}
+}
+
+
+
+/* Footer CSS */
+footer{
+  background: #002F8E;
+  padding: 15px 0;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+footer .text span{
+  font-size: 17px;
+  font-weight: 400;
+  color: #fff;
+}
+footer .text span a{
+  font-weight: 500;
+  color: #FFF;
+}
+footer .text span a:hover{
+  text-decoration: underline;
+}
+/* Responsive Media Query */
+@media (max-width: 1190px) {
+  section .content{
+    width: 85%;
+  }
+}
+@media (max-width: 1000px) {
+  .tentang_aplikasi .tentang_aplikasi-details{
+    justify-content: center;
+    flex-direction: column;
+  }
+  .tentang_aplikasi .tentang_aplikasi-details .left{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .tentang_aplikasi-details .right{
+    width: 90%;
+    margin: 40px 0;
+  }
+}
+@media (max-width: 900px) {
+  .tentang_aplikasi .left img{
+    height: 350px;
+    width: 350px;
+  }
+}
+@media (max-width: 750px) {
+  nav .navbar{
+    width: 90%;
+  }
+  nav .navbar .menu{
+    position: fixed;
+    left: -100%;
+    top: 0;
+    background: #002F8E;
+    height: 100vh;
+    max-width: 400px;
+    width: 100%;
+    padding-top: 60px;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s ease;
+  }
+  .navbar.active .menu{
+    left: 0;
+  }
+  nav .navbar .menu a{
+    font-size: 23px;
+    display: block;
+    color: #fff;
+    margin: 10px 0;
+  }
+  nav.sticky .menu a:hover{
+    color: #4070f4;
+  }
+  nav .navbar .media-icons{
+    display: none;
+  }
+  nav .menu-btn,
+  .navbar .menu .cancel-btn{
+    display: block;
+  }
+  .home .text-two{
+    font-size: 65px;
+  }
+  .home .text-three{
+    font-size: 35px;
+  }
+  .skills .skills-details{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .skills-details .text{
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .skills-details .boxes{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .services .boxes .box{
+    margin: 20px 0;
+    width: 100%;
+  }
+  .contact .text{
+    width: 100%;
+}
+}
+
+@media (max-width: 500px){
+  .home .text-two{
+    font-size: 55px;
+  }
+  .home .text-three{
+    font-size: 33px;
+  }
+  .skills-details .boxes .per{
+    font-size: 50px;
+    color: #4070f4;
+  }
+}
