@@ -23,17 +23,24 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php
+								$i=1;
+								?>
+								@foreach($admin as $p)
 								<tr>
-									<td>No</td>
-									<td>Kode Admin</td>
-									<td>Nama Admin</td>
-									<td>Password</td>
-									<td>Foto Profile</td>
+									<td><?php echo $i?></td>
+									<td>{{ $p->id_admin }}</td>
+									<td>{{ $p->nama_admin }}</td>
+									<td>{{ $p->password }}</td>
+									<td>{{ $p->gambar }}</td>
 								</tr>
 							</tbody>
 							<tfoot>
 							</tfoot>
-						</table>
+							<?php
+								$i++;
+								?>
+						
 						<!-- Awal Modal -->
 						<div class="modal fade" id="modalTambahData" data-bs-backdrop="static" data-bs-keyboard="false"
 							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -70,6 +77,8 @@
 								</div>
 							</div>
 						</div>
+						@endforeach
+						</table>
 						<!-- Akhir Modal -->
 						</div>
 						</div>
