@@ -51,16 +51,16 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="tambahAdmin.php">
+									<form method="POST" action="admin/create">
+										@csrf
 									<div class="modal-body">
 										<div class="mb-3">
 											<label class="form-label">ID Admin</label>
-											<input type="text" class="form-control" name="text-id" 
-												value="" readonly>
+											<input type="text" class="form-control" name="text_id" required>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Nama Admin</label>
-											<input type="text" class="form-control" name="text-namalengkapadmin"
+											<input type="text" class="form-control" name="text_namalengkapadmin"
 												placeholder="Nama Admin" required>
 										</div>
 										<div class="mb-3">

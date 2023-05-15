@@ -46,3 +46,5 @@ Route::get('/profile', [ProfileController::class, 'getdata'])->name('profile');
 Route::get('/', [AuthController::class, 'getdata'])->name('auth');
 
 Route::post('/authLogin', [AuthController::class, 'login'])->name('authLogin');
+
+Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.create');

@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'data_admins',
+        'passwords' => 'data_admin',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'data_admins',
+            'provider' => 'data_admin',
         ],
     ],
 
@@ -60,7 +60,7 @@ return [
     */
 
     'providers' => [
-        'data_admins' => [
+        'data_admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\data_admin::class,
         ],
@@ -87,8 +87,8 @@ return [
     */
 
     'passwords' => [
-        'data_admins' => [
-            'provider' => 'data_admins',
+        'data_admin' => [
+            'provider' => 'data_admin',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

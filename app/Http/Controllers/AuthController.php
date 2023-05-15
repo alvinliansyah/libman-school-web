@@ -16,11 +16,12 @@ class AuthController extends Controller
     
     public function login(Request $request)
     {
-        if(\Auth::attempt(['nama_admin'=> $request->nama_admin, 'password'=> $request->password])){
-            $auth = \Auth::guard('data_admin')->data_admin();           
+        if(Auth::attempt(['nama_admin'=> $request->nama_admin, 'password'=> $request->password])){
+            // $auth = Auth::user();
+            // $value = $request->session()->get('nama_admin');
             // $succes['nama_admin']=$auth->nama_admin;
             // $request->session()->put('id_admin',$auth->name);
-            return redirect('/dashboard');
+            return redirect('dashboard');
         } else {
             return back();
         }
