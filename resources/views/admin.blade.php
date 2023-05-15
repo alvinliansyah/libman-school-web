@@ -28,7 +28,7 @@
 								?>
 								@foreach($admin as $p)
 								<tr>
-									<td><?php echo $i?></td>
+									<td><?php echo $i ?></td>
 									<td>{{ $p->id_admin }}</td>
 									<td>{{ $p->nama_admin }}</td>
 									<td>{{ $p->password }}</td>

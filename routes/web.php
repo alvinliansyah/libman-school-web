@@ -49,3 +49,6 @@ Route::get('/', [ProfileController::class, 'getdata'])->name('auth');
 Route::get('/detailsiswa', [DetailSiswaController::class, 'getdata'])->name('detailsiswa');
 
 
+Route::get('/', [AuthController::class, 'getdata'])->name('auth');
+
+Route::post('/authLogin', [AuthController::class, 'login'])->name('authLogin');
