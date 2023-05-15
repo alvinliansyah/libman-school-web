@@ -12,6 +12,7 @@ use App\Http\Controllers\PelayananPelangganController;
 use App\Http\Controllers\TentangAplikasiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DetailSiswaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +45,7 @@ Route::get('/tentangaplikasi', [TentangAplikasiController::class, 'getdata'])->n
 Route::get('/profile', [ProfileController::class, 'getdata'])->name('profile');
 
 Route::get('/', [ProfileController::class, 'getdata'])->name('auth');
+
+Route::get('/detailsiswa', [DetailSiswaController::class, 'getdata'])->name('detailsiswa');
+
+

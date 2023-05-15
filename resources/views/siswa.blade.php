@@ -1,48 +1,184 @@
 @extends('components/masterLayoutAdmin')
 @section('content')
-<h1 class="title ">Siswa</h1>
+<h1 class="title">Siswa</h1>
 			<ul class="breadcrumbs">
-				<li><a href="{{route('dashboard')}}">Home</a></li>
+				<li><a href="dashboard">Home</a></li>
 				<li class="divider">/</li>
-				<li><a href="#" class="active">Siswa</a></li>
+				<li><a href="#" class="active">Siswa</a>
+			</li>
 			</ul>
-					<div class="card shadow">
-					<h4 class="card-header text-bg-primary mb-3 fw-semibold"><center>Data Kelas
+			<div class="card shadow">
+			<h4 class="card-header text-bg-primary mb-3 fw-semibold"><center>
+			Data Kelas
+					<strong><button type="button" class="btn btn-outline-light btn-sm float-end"><a href="#" data-bs-toggle="modal" data-bs-target="#modalTambahData" style= "font-size: 14.5px; color:white; text-decoration: none; font-weight: normal;"><i class='bx bx-add-to-queue icon'></i>&nbsp;Tambah Data</a></strong></button>
 					</center></h4>
 						<div class="card-body">
 						<div class="container">
-							<table id="example" class="table table-striped table-hover" style="width:100%">
-								<thead>
-									<tr>
-										<th>NO</th>
+						<table id="example" class="table table-striped table-hover" style="width:100%">
+							<thead>
+								<tr>
+								<th>NO</th>
 										<th>TINGKATAN</th>
 										<th>KELAS</th>
 										<th>JUMLAH SISWA</th>
 										<th>AKSI</th>
-									</tr>
-								</thead>
-								<tbody>
+								</tr>
+							</thead>
+							<tbody>
 								<tr>
 								<td>NO</td>
 								<td>TINGKATAN</td>
 								<td>KELAS</td>
 								<td>JUMLAH SISWA</td>
-										<td>
-										<strong>
-											<button type="button" class="btn btn-primary" >
-												<a href="" style= "color:white; text-decoration: none; font-weight: normal;">
+								<td>
+								<div class="d-grid gap-2 d-md-flex justify-content-md">
+								<button type="button" class="btn btn-primary" >
+												<a href="{{route('detailsiswa')}}" style= "color:white; text-decoration: none; font-weight: normal;">
 													<i class='bx bx-show-alt icon'></i>
 												&nbsp;Lihat</a>
 											</button>
-										</strong>
+											<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditData"><i class='bx bx-edit icon bx-xs'></i>&nbsp;Edit</button>
+											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusData"><i class='bx bx-trash icon bx-xs'></i>&nbsp;Hapus</button>
+								</div>
 										</td>
-									</tr>
-								</tbody>
-								<tfoot>
-							</tfoot>
-							</table>
+						<!-- Awal Modal Tambah Data -->
+						<div class="modal fade" id="modalTambahData" data-bs-backdrop="static" data-bs-keyboard="false"
+							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header text-bg-primary mb-3">
+										<h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Siswa</h1>
+										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<form method="POST" action="tambahSiswa.php">
+									<div class="modal-body">
+									<div class="mb-3">
+											<label class="form-label">Tingkatan</label>
+											<select class="form-select" name="tingkatan">
+												<option></option>
+												<option value="VII">VII</option>
+												<option value="VIII">VIII</option>
+												<option value="IX">IX</option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Kelas</label>
+											<select class="form-select" name="kelas">
+												<option></option>
+												<option value="A">A</option>
+												<option value="B">B</option>
+												<option value="C">C</option>
+												<option value="D">D</option>
+												<option value="E">E</option>
+												<option value="G">G</option>
+												<option value="H">H</option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Jumlah Siswa</label>
+											<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3" class="form-control" name="number-jumlahsiswa"
+												placeholder="Jumlah Siswa" required>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-primary"
+											name="button-submittambahdata1">Simpan</button>
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Keluar</button>
+									</div>
+									</form>
+								</div>
+							</div>
 						</div>
-					</div>
+						<!-- Akhir Modal -->
+						<!-- Awal Modal Edit Data -->
+						<div class="modal fade" id="modalEditData" data-bs-backdrop="static" data-bs-keyboard="false"
+							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header text-bg-primary mb-3">
+										<h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data Siswa</h1>
+										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<form method="POST" action="editSiswa.php">
+									<div class="modal-body">
+									<div class="mb-3">
+											<label class="form-label">Tingkatan</label>
+											<select class="form-select" name="tingkatan">
+												<option></option>
+												<option value="VII">VII</option>
+												<option value="VIII">VIII</option>
+												<option value="IX">IX</option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Kelas</label>
+											<select class="form-select" name="kelas">
+												<option></option>
+												<option value="A">A</option>
+												<option value="B">B</option>
+												<option value="C">C</option>
+												<option value="D">D</option>
+												<option value="E">E</option>
+												<option value="G">G</option>
+												<option value="H">H</option>
+											</select>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Jumlah Siswa</label>
+											<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3" class="form-control" name="number-jumlahsiswa"
+												placeholder="Jumlah Siswa" required>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-primary"
+											name="button-editdata">Simpan</button>
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Keluar</button>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- Akhir Modal -->
+						<!-- Awal Modal Hapus Data -->
+						<div class="modal fade" id="modalHapusData" data-bs-backdrop="static" data-bs-keyboard="false"
+							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header text-bg-primary mb-3">
+										<h1 class="modal-title fs-5" id="staticBackdropLabel">Hapus Data?</h1>
+										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<form method="POST" action="hapusSiswa.php">
+									<div class="modal-body">Apakah anda yakin ingin menghapus data?</div>
+									<div class="mb-3">
+											<input type="hidden" class="form-control" name="jumlahsiswa"
+											value="">
+										</div>
+									<div class="mb-3">
+											<input type="hidden" class="form-control" name="kelas"
+												value="">
+										</div>
+									<div class="mb-3">
+											<input type="hidden" class="form-control" name="tingkatan"
+												value="">
+										</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-danger"
+											name="button-submithapusdata">Hapus</button>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- Akhir Modal -->
+						</tr>
+							</tbody>
+						</table>
 						</div>
 						</div>
 			</div>
@@ -55,6 +191,4 @@
 			</center>
 			</footer>
 			<br/>
-
-
 @endsection
