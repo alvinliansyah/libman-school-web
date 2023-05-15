@@ -2,7 +2,7 @@
 @section('content')
 <h1 class="title">Buku</h1>
 			<ul class="breadcrumbs">
-				<li><a href="dashboard.php">Home</a></li>
+				<li><a href="{{route('dashboard')}}">Home</a></li>
 				<li class="divider">/</li>
 				<li><a href="#" class="active">Buku</a></li>
 			</ul>

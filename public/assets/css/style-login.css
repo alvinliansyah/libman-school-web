@@ -191,17 +191,17 @@ nav.sticky .menu-btn{
   color: #fff;
 }
 
-/* home section styling */
-.home{
+/* Login section styling */
+.login{
   height: 92vh;
   width: 100%;
-  background: url("img/Group 3.jpg") no-repeat;
+  background: url("../../assets/img/Group\ 3.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   font-family: 'Ubuntu', sans-serif;
 }
-.home .home-content{
+.login .login-content{
   width: 90%;
   height: 100%;
   margin: auto;
@@ -209,7 +209,7 @@ nav.sticky .menu-btn{
   flex-direction: column;
   justify-content: center;
 }
-.home .home-content .menu{
+.login .login-content .menu{
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -217,7 +217,7 @@ nav.sticky .menu-btn{
   padding: 30px;
   
 }
-.home .home-content .menu .container{
+.login .login-content .menu .container{
   position: relative;
   max-width: 850px;
   width: 100%;
@@ -264,7 +264,7 @@ nav.sticky .menu-btn{
   position: absolute;
   height: 100%;
   width: 50%;
-  background: url('img/wander-fleur-1lmGTHdQdjM-unsplash2.jpg');
+  background: url("../img/wander-fleur-1lmGTHdQdjM-unsplash2.jpg");
   opacity: 100%;
   z-index: 10.5;
   
@@ -659,10 +659,10 @@ footer .text span a:hover{
   .navbar .menu .cancel-btn{
     display: block;
   }
-  .home .text-two{
+  .beranda .text-two{
     font-size: 65px;
   }
-  .home .text-three{
+  .beranda .text-three{
     font-size: 35px;
   }
   .skills .skills-details{
@@ -689,10 +689,10 @@ footer .text span a:hover{
 }
 
 @media (max-width: 500px){
-  .home .text-two{
+  .beranda .text-two{
     font-size: 55px;
   }
-  .home .text-three{
+  .beranda .text-three{
     font-size: 33px;
   }
   .skills-details .boxes .per{
