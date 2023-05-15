@@ -24,7 +24,7 @@
 								<tr>
 									<td>NO</td>
 									<td>JENIS BUKU</td>
-									<td>JUMLAH</td>
+									<td>JUNLAH</td>
 									<td>
 									<div class="d-grid gap-3 d-md-flex justify-content-md">
 											<strong><button type="button" class="btn btn-primary" ><a href="" style= "color:white; text-decoration: none; font-weight: normal;"><i class='bx bx-show-alt icon'></i>&nbsp;Lihat</a></strong></button>
