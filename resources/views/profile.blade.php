@@ -21,7 +21,7 @@
 						<div class="card-body">
 						<div class="profile-form">
 						<form action="#">
-						<center><div><img src="" alt="" class="img-profile"></div></center>
+						<center><div><img src="{!! asset('assets/img/default-avatar.png') !!}" alt="" class="img-profile"></div></center>
 						<br/>
 						<div>
 						<label class="form-label">Kode Admin</label>

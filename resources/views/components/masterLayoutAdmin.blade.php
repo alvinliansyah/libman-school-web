@@ -132,16 +132,16 @@
 	} );
 	</script>
 		<script>
-	const file_fotoprofile = document.getElementById('file-fotobuku');
+	const file_fotobuku = document.getElementById('file-fotobuku');
 
-	file_fotoprofile.onchange = () => {
-	const [image_fotoprofile] = file_fotoprofile.files
-	if (image_fotoprofile.size > 2000000) {
-		if(image_fotoprofile){
+	file_fotobuku.onchange = () => {
+	const [image_fotobuku] = file_fotobuku.files
+	if (image_fotobuku.size > 2000000) {
+		if(image_fotobuku){
 		alert('ukuran file maksimal 2mb');
-		file_fotoprofile.value = '';
+		file_fotobuku.value = '';
 		return false;	
-	} else if(image_fotoprofile.type != 'image/jpeg' && image_fotoprofile.type != 'image/png' && image_fotoprofile.type != 'image/jpg') {
+	} else if(image_fotobuku.type != 'image/jpeg' && image_fotobuku.type != 'image/png' && image_fotobuku.type != 'image/jpg') {
 		alert('type file harus .jpg .png .jpeg');
 			imginp_rental.value = '';
 			return false;
@@ -149,7 +149,7 @@
 	}
 	}
 	</script>
-		<script>
+	<script>
 	const file_fotoprofile = document.getElementById('file-fotoprofile');
 
 	file_fotoprofile.onchange = () => {
