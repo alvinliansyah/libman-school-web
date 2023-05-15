@@ -68,12 +68,13 @@
                    <br/>
                <p style="line-height:1px;">Masukkan Nama Admin dan</p>
                <p>Password untuk melanjutkan ke halaman berikutnya</p>
-                 <form method="post" action="cek_login.php">
+                 <form method="POST" action="/authLogin">
+                  @csrf
                      <div  class="field input-field">
-                       <input type="text" class="form-control" style="height: 50px;" placeholder="Nama Admin" name ="user" required>
+                       <input type="text" class="form-control" style="height: 50px;" placeholder="Nama Admin" name ="nama_admin" required>
                      </div>
                      <div  class="field input-field">
-                       <input type="password" class="form-control" style="height: 50px;" placeholder="Password" name ="pass" required>
+                       <input type="password" class="form-control" style="height: 50px;" placeholder="Password" name ="password" required>
                      </div>
                      <div class="text"><label for="flip">Lupa Password?</label></div>
                      <div class="button input-box">

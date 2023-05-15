@@ -43,4 +43,6 @@ Route::get('/tentangaplikasi', [TentangAplikasiController::class, 'getdata'])->n
 
 Route::get('/profile', [ProfileController::class, 'getdata'])->name('profile');
 
-Route::get('/', [ProfileController::class, 'getdata'])->name('auth');
+Route::get('/', [AuthController::class, 'getdata'])->name('auth');
+
+Route::post('/authLogin', [AuthController::class, 'login'])->name('authLogin');
