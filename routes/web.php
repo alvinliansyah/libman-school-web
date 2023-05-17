@@ -54,3 +54,17 @@ Route::get('/', [AuthController::class, 'getdata'])->name('auth');
 Route::post('/authLogin', [AuthController::class, 'login'])->name('authLogin');
 
 Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.create');
+
+Route::post('/buku/create', [BukuController::class, 'create'])->name('buku.create');
+
+Route::post('/buku/update', [BukuController::class, 'update'])->name('buku.update');
+
+Route::post('/buku/delete', [BukuController::class, 'delete'])->name('buku.delete');
+
+Route::post('/auth/update', [BukuController::class, 'update'])->name('auth.update');
+
+Route::post('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
+
+Route::post('/siswa/update', [SiswaController::class, 'update'])->name('siswa.update');
+
+Route::post('/siswa/delete', [SiswaController::class, 'delete'])->name('siswa.delete');

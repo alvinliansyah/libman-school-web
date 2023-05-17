@@ -19,24 +19,30 @@
 									<th>NO</th>
 									<th>KODE BUKU</th>
 									<th>JUDUL</th>
-									<th>SEMESTER</th>
-									<th>TINGKATAN</th>
+									<th>PENERBIT</th>
+									<th>TAHUN TERIMA</th>
 									<th>JUMLAH</th>
+									<th>GAMBAR</th>
 									<th>AKSI</th>
 								</tr>
 							</thead>
 							<tbody>
+							<?php
+								$i=1;
+								?>
+								@foreach($buku as $b)
 								<tr>
-									<td>NO</td>
-									<td>KODE BUKU</td>
-									<td>JUDUL</td>
-									<td>SEMESTER</td>
-									<td>TINGKATAN</td>
-									<td>JUMLAH</td>
+									<td><?php echo $i ?></td>
+									<td>{{ $b->id_buku }}</td>
+									<td>{{ $b->judul_buku }}</td>
+									<td>{{ $b->penerbit }}</td>
+									<td>{{ $b->tahun_terima }}</td>
+									<td>{{ $b->jumlah }}</td>
+									<td>{{ $b->gambar }}</td>
 									<td>
 									<div class="d-grid gap-2 d-md-flex justify-content-md">
-											<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditData"><i class='bx bx-edit icon bx-xs'>&nbsp;Edit</i></button>
-											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusData"><i class='bx bx-trash icon bx-xs'></i>&nbsp;Hapus</button>
+											<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditData<?=$i;?>"><i class='bx bx-edit icon bx-xs'>&nbsp;Edit</i></button>
+											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusData<?=$i;?>"><i class='bx bx-trash icon bx-xs'></i>&nbsp;Hapus</button>
 								</div>
 										</td>
 						<!-- Awal Modal Tambah Data -->
@@ -49,47 +55,36 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="tambahBuku.php" enctype="multipart/form-data">
+									<form method="POST" action="buku/create" enctype="multipart/form-data">
+										@csrf
 									<div class="modal-body">
 										<div class="mb-3">
 											<label class="form-label">Kode Buku</label>
-											<input type="text" class="form-control" name="text-kodebuku"
+											<input type="text" class="form-control" name="text_kodebuku"
 												placeholder="Kode Buku" required>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Judul</label>
-											<input type="text" class="form-control" name="text-judul"
+											<input type="text" class="form-control" name="text_judul"
 												placeholder="Judul" required>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Semester</label>
-											<select class="form-select" name="text-semester">
-												<option></option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-											</select>
+											<label class="form-label">Penerbit</label>
+											<input type="text" class="form-control" name="text_penerbit"
+												placeholder="Judul" required>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Tingkatan</label>
-											<select class="form-select" name="text-Tingkatan">
-												<option></option>
-												<option value="VII">VII</option>
-												<option value="VIII">VIII</option>
-												<option value="IX">IX</option>
-											</select>
+											<label class="form-label">Tahun Terima</label>
+											<input type="text" class="form-control" name="text_tahunterima"
+												placeholder="Judul" required>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Jumlah</label>
-											<input type="number" class="form-control" name="text-jumlah"
-												value=1 readonly>
-										</div>
-										<div class="mb-3">
-											<input type="hidden" class="form-control" name="text-jenis"
-												value="" required>
+											<input type="number" class="form-control" name="text_jumlah" required>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Foto Buku</label>
-											<input id="file-fotobuku" accept="image/*" type="file" class="form-control" name="file-fotobuku" required>
+											<input id="file-fotobuku" accept="image/*" type="file" class="form-control" name="file_fotobuku">
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -104,7 +99,7 @@
 						</div>
 						<!-- Akhir Modal -->
 						<!-- Awal Modal Edit Data -->
-						<div class="modal fade" id="modalEditData" data-bs-backdrop="static" data-bs-keyboard="false"
+						<div class="modal fade" id="modalEditData<?=$i;?>" data-bs-backdrop="static" data-bs-keyboard="false"
 							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -113,43 +108,38 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="editBuku.php">
+									<form method="POST" action="/buku/update">
+										@csrf
 									<div class="modal-body">
 										<div class="mb-3">
 											<label class="form-label">Kode Buku</label>
-											<input type="text" class="form-control" name="text-kodebuku"
-												value="" readonly>
+											<input type="text" class="form-control" name="text_kodebukue"
+											value="{{ $b->id_buku }}" readonly>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Judul</label>
-											<input type="text" class="form-control" name="text-judul"
-												value="" placeholder="Judul" required>
+											<input type="text" class="form-control" name="text_judule"
+											value='{{$b->judul_buku}}' placeholder="Judul" required>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Semester</label>
-											<select class="form-select" name="text-semester">
-												<option value=""  selected="selected"></option>
-												<option value="1" selected="selected">1</option>
-												<option value="2"  selected="selected">2</option>
-											</select>
+											<label class="form-label">Penerbit</label>
+											<input type="text" class="form-control" name="text_penerbite"
+											value='{{$b->penerbit}}' placeholder="Judul" required>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Tingkatan</label>
-											<select class="form-select" name="text-Tingkatan">
-												<option value="VII" selected="selected">VII</option>
-												<option value="VIII"  selected="selected">VIII</option>
-												<option value="IX"  selected="selected">IX</option>
-											</select>
+											<label class="form-label">Tahun Terima</label>
+											<input type="text" class="form-control" name="text_tahunterimae"
+											value='{{$b->tahun_terima}}' placeholder="Judul" required>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Jumlah</label>
-											<input type="number" class="form-control" name="text-jumlah"
-												value=1 readonly>
+											<input type="number" class="form-control" name="text_jumlahe" 
+											value='{{$b->jumlah}}' required>
 										</div>
 										<div class="mb-3">
-											<input type="hidden" class="form-control" name="text-jenis"
-												value="" required>
-										</div>
+											<label class="form-label">Foto Buku</label>
+											<input id="file-fotobuku" accept="image/*" type="file" class="form-control" name="file_fotobukue"
+											value='{{$b->gambar}}'>
 									</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-primary"
@@ -157,13 +147,14 @@
 										<button type="button" class="btn btn-secondary"
 											data-bs-dismiss="modal">Keluar</button>
 									</div>
+									</div>
 									</form>
 								</div>
 							</div>
 						</div>
 						<!-- Akhir Modal -->
 						<!-- Awal Modal Hapus Data -->
-						<div class="modal fade" id="modalHapusData" data-bs-backdrop="static" data-bs-keyboard="false"
+						<div class="modal fade" id="modalHapusData<?=$i;?>" data-bs-backdrop="static" data-bs-keyboard="false"
 							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -172,16 +163,13 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="hapusBuku.php">
+									<form method="POST" action="/buku/delete">
+										@csrf
 									<div class="modal-body">Apakah anda yakin ingin menghapus data?</div>
 									<div class="mb-3">
-											<input type="hidden" class="form-control" name="text-kodebuku"
-												value="" required>
-										</div>
-									<div class="mb-3">
-											<input type="hidden" class="form-control" name="text-jenis"
-												value="" required>
-										</div>
+											<input type="hidden" class="form-control" name="text_kodebukuh"
+											value="{{ $b->id_buku }}" required>
+										</div>									
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-danger"
 											name="button-hapusdata">Hapus</button>
@@ -191,8 +179,12 @@
 							</div>
 						</div>
 						<!-- Akhir Modal -->
-						</tr>
+						<?php
+								$i++;
+						?>
+							</tr>	
 							</tbody>
+						@endforeach
 						</table>
 						</div>
 						</div>

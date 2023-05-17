@@ -10,7 +10,7 @@
 				<div class="card shadow">
 					<div class="head">
 						<div>
-							<h2>000</h2>
+							<h2>{{$data_buku+$peminjaman}}</h2>
 							<p>Buku Keseluruhan</p>
 						</div>
 					</div>
@@ -20,7 +20,7 @@
 				<div class="card shadow">
 					<div class="head">
 						<div>
-							<h2>000</h2>
+							<h2>{{$data_buku}}</h2>
 							<p>Buku Tersedia Di Perpustakaan</p>
 						</div>
 					</div>
@@ -30,7 +30,7 @@
 				<div class="card shadow">
 					<div class="head">
 						<div>
-							<h2>000</h2>
+							<h2>{{$peminjaman}}</h2>
 							<p>Buku Sedang Proses Peminjaman</p>
 						</div>
 					</div>
