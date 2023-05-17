@@ -86,7 +86,8 @@
                    <header>Lupa Password</header>
                    <br/>
                    <p>Silahkan masukkan Password baru anda</p>
-               <form action="lupaPassword.php" method="POST">
+               <form action="/auth/update" method="POST">
+                @csrf
                    <div class="field input-field">
                        <input type="text" class="form-control" style="height: 50px;" placeholder="Nama Admin" name="nama" required>
                      </div>
@@ -94,7 +95,7 @@
                        <input type="password" class="form-control" style="height: 50px;" placeholder="Password" name="password" required>
                      </div>
                      <div class="field input-field">
-                       <input type="password" class="form-control" style="height: 50px;" placeholder="Konfirmasi password" name="konfirm-password" required>
+                       <input type="password" class="form-control" style="height: 50px;" placeholder="Konfirmasi password" name="konfirm_password" required>
                      </div>
                      <div class="button input-box">
                        <input type="submit" value="Simpan" name="simpan">

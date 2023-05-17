@@ -68,7 +68,10 @@
 											<input type="password" class="form-control" name="password"
 												placeholder="Password" required>
 										</div>
-									</div>
+										<!-- <div class="mb-3">
+											<label class="form-label">Foto Admin</label>
+											<input id="file_fotoprofile" type="file" class="form-control" name="file_fotoprofile">
+									</div> -->
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-primary" name="button-simpan">Simpan</button>
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>

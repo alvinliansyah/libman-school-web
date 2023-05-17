@@ -18,18 +18,22 @@
 							<thead>
 								<tr>
 								<th>NO</th>
-										<th>TINGKATAN</th>
-										<th>KELAS</th>
-										<th>JUMLAH SISWA</th>
-										<th>AKSI</th>
+								<th>Id_data_kelas</th>
+								<th>TINGKATAN</th>
+								<th>KELAS</th>
+								<th>AKSI</th>
 								</tr>
 							</thead>
 							<tbody>
+							<?php
+								$i=1;
+								?>
+								@foreach($kelas as $k)
 								<tr>
-								<td>NO</td>
-								<td>TINGKATAN</td>
-								<td>KELAS</td>
-								<td>JUMLAH SISWA</td>
+								<td><?php echo $i ?></td>
+								<td>{{ $k->id_data_kelas }}</td>
+								<td>{{ $k->tingkatan }}</td>
+								<td>{{ $k->kelas }}</td>
 								<td>
 								<div class="d-grid gap-2 d-md-flex justify-content-md">
 								<button type="button" class="btn btn-primary" >
@@ -37,8 +41,8 @@
 													<i class='bx bx-show-alt icon'></i>
 												&nbsp;Lihat</a>
 											</button>
-											<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditData"><i class='bx bx-edit icon bx-xs'></i>&nbsp;Edit</button>
-											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusData"><i class='bx bx-trash icon bx-xs'></i>&nbsp;Hapus</button>
+											<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditData<?=$i;?>"><i class='bx bx-edit icon bx-xs'></i>&nbsp;Edit</button>
+											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusData<?=$i;?>"><i class='bx bx-trash icon bx-xs'></i>&nbsp;Hapus</button>
 								</div>
 										</td>
 						<!-- Awal Modal Tambah Data -->
@@ -47,15 +51,21 @@
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header text-bg-primary mb-3">
-										<h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Siswa</h1>
+										<h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Kelas</h1>
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="tambahSiswa.php">
+									<form method="POST" action="/siswa/create">
+										@csrf
 									<div class="modal-body">
 									<div class="mb-3">
+											<label class="form-label">Kode Kelas</label>
+											<input type="text" class="form-control" name="text_kodekelast"
+												placeholder="Kode Buku" required>
+									</div>
+									<div class="mb-3">
 											<label class="form-label">Tingkatan</label>
-											<select class="form-select" name="tingkatan">
+											<select class="form-select" name="tingkatant">
 												<option></option>
 												<option value="VII">VII</option>
 												<option value="VIII">VIII</option>
@@ -64,7 +74,7 @@
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Kelas</label>
-											<select class="form-select" name="kelas">
+											<select class="form-select" name="kelast">
 												<option></option>
 												<option value="A">A</option>
 												<option value="B">B</option>
@@ -74,11 +84,6 @@
 												<option value="G">G</option>
 												<option value="H">H</option>
 											</select>
-										</div>
-										<div class="mb-3">
-											<label class="form-label">Jumlah Siswa</label>
-											<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3" class="form-control" name="number-jumlahsiswa"
-												placeholder="Jumlah Siswa" required>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -93,20 +98,26 @@
 						</div>
 						<!-- Akhir Modal -->
 						<!-- Awal Modal Edit Data -->
-						<div class="modal fade" id="modalEditData" data-bs-backdrop="static" data-bs-keyboard="false"
+						<div class="modal fade" id="modalEditData<?=$i;?>" data-bs-backdrop="static" data-bs-keyboard="false"
 							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header text-bg-primary mb-3">
-										<h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data Siswa</h1>
+										<h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data Kelas</h1>
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="editSiswa.php">
+									<form method="POST" action="/siswa/update">
+										@csrf
 									<div class="modal-body">
 									<div class="mb-3">
+											<label class="form-label">Kode Kelas</label>
+											<input type="text" class="form-control" name="text_kodekelase"
+											value='{{$k->id_data_kelas}}' placeholder="Kode Buku" readonly>
+									</div>
+									<div class="mb-3">
 											<label class="form-label">Tingkatan</label>
-											<select class="form-select" name="tingkatan">
+											<select class="form-select" name="tingkatane">
 												<option></option>
 												<option value="VII">VII</option>
 												<option value="VIII">VIII</option>
@@ -115,7 +126,7 @@
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Kelas</label>
-											<select class="form-select" name="kelas">
+											<select class="form-select" name="kelase">
 												<option></option>
 												<option value="A">A</option>
 												<option value="B">B</option>
@@ -125,11 +136,6 @@
 												<option value="G">G</option>
 												<option value="H">H</option>
 											</select>
-										</div>
-										<div class="mb-3">
-											<label class="form-label">Jumlah Siswa</label>
-											<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3" class="form-control" name="number-jumlahsiswa"
-												placeholder="Jumlah Siswa" required>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -144,7 +150,7 @@
 						</div>
 						<!-- Akhir Modal -->
 						<!-- Awal Modal Hapus Data -->
-						<div class="modal fade" id="modalHapusData" data-bs-backdrop="static" data-bs-keyboard="false"
+						<div class="modal fade" id="modalHapusData<?=$i;?>" data-bs-backdrop="static" data-bs-keyboard="false"
 							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -153,19 +159,12 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="hapusSiswa.php">
+									<form method="POST" action="/siswa/delete">
+										@csrf
 									<div class="modal-body">Apakah anda yakin ingin menghapus data?</div>
 									<div class="mb-3">
-											<input type="hidden" class="form-control" name="jumlahsiswa"
-											value="">
-										</div>
-									<div class="mb-3">
-											<input type="hidden" class="form-control" name="kelas"
-												value="">
-										</div>
-									<div class="mb-3">
-											<input type="hidden" class="form-control" name="tingkatan"
-												value="">
+											<input type="hidden" class="form-control" name="kodekelash"
+											value='{{$k->id_data_kelas}}'>
 										</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-danger"
@@ -176,8 +175,12 @@
 							</div>
 						</div>
 						<!-- Akhir Modal -->
-						</tr>
+						<?php
+							$i++;
+							?>
+							</tr>	
 							</tbody>
+						@endforeach
 						</table>
 						</div>
 						</div>

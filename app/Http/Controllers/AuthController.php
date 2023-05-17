@@ -26,4 +26,12 @@ class AuthController extends Controller
             return back();
         }
     }
+
+    public function Update(Request $request)
+    {
+        DB::table('data_admin')->where('nama_admin',$request->nama)->update([
+            'password' => bcrypt($request->password),
+        ]);
+        return redirect('auth');
+    }
 }
