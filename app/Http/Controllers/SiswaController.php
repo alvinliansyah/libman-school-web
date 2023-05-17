@@ -38,4 +38,16 @@ class SiswaController extends Controller
 	DB::table('data_kelas')->where('id_data_kelas',$request->kodekelash)->delete();
 	return redirect('siswa');
     }
+
+    public function detailSiswa($id_data_kelas)
+{
+    // Lakukan pengolahan data atau query berdasarkan $id_data_kelas
+
+    // Contoh pengambilan data siswa berdasarkan $id_data_kelas dari database
+    $siswa = DB::table('data_siswa')->where('id_data_kelas', $id_data_kelas)->first();
+
+    $ambil = DB::table('data_siswa')->where('id_data_kelas', $id_data_kelas)->get();
+    // Kirim data siswa ke tampilan "detail-siswa.blade.php"
+    return view('detailSiswa', ['data_siswa' => $siswa, 'siswa' => $ambil]);
+}
 }

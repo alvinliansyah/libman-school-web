@@ -23,6 +23,7 @@ class AuthController extends Controller
             // $request->session()->put('id_admin',$auth->name);
             $request->session()->put('nama_admin', Auth::user()->nama_admin);
             $request->session()->put('id_admin', Auth::user()->id_admin);
+            $request->session()->put('password', Auth::user()->password);
             return redirect('dashboard');
         } else {
             return back();
@@ -35,5 +36,16 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
         return redirect('auth');
+    }
+
+    public function logout(Request $request)    
+    {
+        \Auth::logout();
+ 
+        request()->session()->invalidate();
+ 
+        request()->session()->regenerateToken();
+ 
+        return redirect('/');
     }
 }

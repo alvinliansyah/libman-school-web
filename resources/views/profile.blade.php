@@ -26,15 +26,15 @@
 						<div>
 						<label class="form-label">Kode Admin</label>
 						<div class="field input-field">
-							<input type="text" class="form-control" style="height: 50px;" name = "kdadmin" value="" readonly>
+							<input type="text" class="form-control" style="height: 50px;" name = "kdadmin" value="{{session()->get('id_admin')}}" readonly>
 						</div>
 						<label class="form-label">Nama Admin</label>
 						<div class="field input-field">
-							<input type="text" class="form-control" style="height: 50px;" name = "namaadmin" placeholder="Nama Admin" value="" readonly>
+							<input type="text" class="form-control" style="height: 50px;" name = "namaadmin" placeholder="Nama Admin" value="{{session()->get('nama_admin')}}" readonly>
 						</div>
 						<label class="form-label">Password</label>
 						<div class="field input-field">
-							<input type="text" class="form-control" style="height: 50px;" name = "pass" placeholder="Password" value="" readonly>
+							<input type="password" class="form-control" style="height: 50px;" name = "pass" placeholder="Password" value="{{session()->get('password')}}" readonly>
 						</div>
              		 </form>
 						<!-- Awal Modal -->

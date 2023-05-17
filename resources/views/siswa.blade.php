@@ -18,7 +18,7 @@
 							<thead>
 								<tr>
 								<th>NO</th>
-								<th>Id_data_kelas</th>
+								<th>ID KELAS</th>
 								<th>TINGKATAN</th>
 								<th>KELAS</th>
 								<th>AKSI</th>
@@ -37,7 +37,7 @@
 								<td>
 								<div class="d-grid gap-2 d-md-flex justify-content-md">
 								<button type="button" class="btn btn-primary" >
-												<a href="{{route('detailsiswa')}}" style= "color:white; text-decoration: none; font-weight: normal;">
+												<a href="{{ route('detailsiswa', ['id_data_kelas' => $k->id_data_kelas]) }}" style= "color:white; text-decoration: none; font-weight: normal;">
 													<i class='bx bx-show-alt icon'></i>
 												&nbsp;Lihat</a>
 											</button>

@@ -1,7 +1,6 @@
 @extends('components/masterLayoutAdmin')
 @section('content')
 			<h1 class="title">Dashboard</h1>
-			<?php dd(session()->all())?>
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="divider">/</li>

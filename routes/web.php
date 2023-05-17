@@ -24,6 +24,13 @@ use App\Http\Controllers\DetailSiswaController;
 |
 */
 
+Route::get('/', [ProfileController::class, 'getdata'])->name('auth');
+
+Route::get('/', [AuthController::class, 'getdata'])->name('auth');
+
+Route::post('/authLogin', [AuthController::class, 'login'])->name('authLogin');
+
+Route::group(['middleware'=>['auth']], function(){
 Route::get('/dashboard', [DashboardController::class, 'getdata'])->name('dashboard');
 
 Route::get('/siswa', [SiswaController::class, 'getdata'])->name('siswa');
@@ -44,14 +51,9 @@ Route::get('/tentangaplikasi', [TentangAplikasiController::class, 'getdata'])->n
 
 Route::get('/profile', [ProfileController::class, 'getdata'])->name('profile');
 
-Route::get('/', [ProfileController::class, 'getdata'])->name('auth');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/detailsiswa', [DetailSiswaController::class, 'getdata'])->name('detailsiswa');
-
-
-Route::get('/', [AuthController::class, 'getdata'])->name('auth');
-
-Route::post('/authLogin', [AuthController::class, 'login'])->name('authLogin');
 
 Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.create');
 
@@ -68,3 +70,6 @@ Route::post('/siswa/create', [SiswaController::class, 'create'])->name('siswa.cr
 Route::post('/siswa/update', [SiswaController::class, 'update'])->name('siswa.update');
 
 Route::post('/siswa/delete', [SiswaController::class, 'delete'])->name('siswa.delete');
+
+Route::get('/detailsiswa/{id_data_kelas}', [SiswaController::class, 'detailSiswa'])->name('detailsiswa');
+});

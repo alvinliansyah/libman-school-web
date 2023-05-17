@@ -40,7 +40,7 @@
 					<li><a href="{{route('tentangaplikasi')}}">Tentang Aplikasi</a></li>
 				</ul>
 			</li>
-            <li><a href=""><i class='bx bx-log-out-circle icon'></i>Keluar</a></li>
+            <li><a href="{{route('logout')}}"><i class='bx bx-log-out-circle icon'></i>Keluar</a></li>
         </ul>
 	</section>
 	<!-- SIDEBAR -->

@@ -4,7 +4,7 @@
 			<div class="card float-end shadow" style="height: 3.5rem; width: 8.5rem; top: 10px;">
 			<div class="card-header text-bg-primary" style="padding: 4px"></div>
 			<div class="card-body">
-			<center><p class="card-title" style="font-family: 'Open Sans', sans-serif; font-weight: 1000; font-size: 17px; line-height: 14px;">tingkatan<strong><a class="divider" style= "color:black; text-decoration: none; font-weight: 600; font-size: 18px; line-height: 10px;">&nbsp / &nbsp</a></strong>kelas</p></center>
+			<center><p class="card-title" style="font-family: 'Open Sans', sans-serif; font-weight: 1000; font-size: 17px; line-height: 14px;">id kelas : {{ $data_siswa->id_data_kelas }}<strong><a class="divider" style= "color:black; text-decoration: none; font-weight: 600; font-size: 18px; line-height: 10px;"></a></strong></p></center>
 			</div>
 			</div>
 			</h1>
@@ -30,17 +30,22 @@
 									<th>PASSWORD</th>
 									<th>NO TELEPHONE</th>
 									<th>JENIS KELAMIN</th>
+									<th>TOKEN</th>
+									<th>GAMBAR</th>
 									<th>AKSI</th>
 								</tr>
 							</thead>
+							@foreach($siswa as $s)
 							<tbody>
 								<tr>
 								<td>NO</td>
-								<td>NIS</td>
-								<td>NAMA SISWA</td>
-								<td>PASSWORD</td>
-								<td>NO TELEPHONE</td>
-								<td>JENIS KELAMIN</td>
+								<td>{{ $s->NIS }}</td>
+								<td>{{ $s->nama_siswa }}</td>
+								<td>{{ $s->password }}</td>
+								<td>{{ $s->notelp }}</td>
+								<td>{{ $s->jenis_kelamin }}</td>
+								<td>{{ $s->token }}</td>
+								<td>{{ $s->gambar }}</td>
 								<td>
 								<div class="d-grid gap-2 d-md-flex justify-content-md">
 											<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditData"><i class='bx bx-edit icon bx-xs'></i>&nbsp;Edit</button>
@@ -202,6 +207,7 @@
 						<!-- Akhir Modal -->
 						</tr>
 							</tbody>
+							@endforeach
 						</table>
 						</div>
 						</div>
