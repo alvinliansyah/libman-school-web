@@ -37,7 +37,18 @@ class RegisterController extends Controller
 
             DB::table('data_siswa')->insert($insertData);
 
-            return response()->json("Success");
+            return response()->json([
+                'status' => 'true',
+                'massage' => 'akun berhasil didaftar',
+                'data' => $insertData = array(
+                    'NIS' => $nis,
+                    'nama_siswa' => $nama,
+                    'password' => $password,
+                    'jenis_kelamin' => $jenisKelamin,
+                    'notelp' => $noTelp,
+                    'gambar' => $gambar,
+                    'id_data_kelas' => $id_data_kelas)
+                ]);
         }
     }
 }

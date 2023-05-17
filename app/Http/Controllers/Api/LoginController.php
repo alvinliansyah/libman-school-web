@@ -39,14 +39,14 @@ class LoginController extends Controller
             
 
             return response()->json([
-                'response_code' => 200,
+                'status' => 'true',
                 'message' => 'Login Berhasil',
-                'content' => $user
+                'data' => $user
             ]);
         }else{
             return response()->json([
-                'response_code' => 404,
-                'message' => 'Username atau Password Tidak Ditemukan!'
+                'status' => 'false',
+                'message' => 'Login Gagal',
             ]);
     }
 }
