@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class data_admin extends Authenticatable
+class data_siswa extends Authenticatable
 {
     use HasFactory;
 
-    public $table = 'data_admin';
-    protected $primaryKey='id_admin';
-
+    public $table = 'data_siswa';
+    protected $primaryKey = 'NIS';
     protected $fillable = [
-        'id_admin','nama_admin','password','gambar',
+        'NIS','nama_siswa','password','jenis_kelamin', 'notelp', 'gambar', 'id_data_kelas',
     ];
 }

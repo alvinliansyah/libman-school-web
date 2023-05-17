@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'data_admin',
         ],
+        'mobile' => [
+            'driver' => 'session',
+            'provider' => 'data_siswa',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'data_admin' => [
             'driver' => 'eloquent',
             'model' => App\Models\data_admin::class,
+        ],
+        'data_siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\data_siswa::class,
         ],
 
         // 'users' => [
