@@ -16,7 +16,7 @@ class AuthController extends Controller
     
     public function login(Request $request)
     {
-        if(Auth::attempt(['nama_admin'=> $request->nama_admin, 'password'=> $request->password])){
+        if(Auth::guard('web')->attempt(['nama_admin'=> $request->nama_admin, 'password'=> $request->password])){
             // $auth = Auth::user();
             // $value = $request->session()->get('nama_admin');
             // $succes['nama_admin']=$auth->nama_admin;
