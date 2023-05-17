@@ -1,6 +1,7 @@
 @extends('components/masterLayoutAdmin')
 @section('content')
 			<h1 class="title">Dashboard</h1>
+			<?php dd(session()->all())?>
 			<ul class="breadcrumbs">
 				<li><a href="#">Home</a></li>
 				<li class="divider">/</li>
@@ -40,7 +41,7 @@
 				<div class="card shadow">
 					<div class="head">
 						<div>
-							<h2>000</h2>
+							<h2>{{$siswa}}</h2>
 							<p>Total Siswa</p>
 						</div>
 					</div>

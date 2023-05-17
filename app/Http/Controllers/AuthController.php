@@ -21,6 +21,8 @@ class AuthController extends Controller
             // $value = $request->session()->get('nama_admin');
             // $succes['nama_admin']=$auth->nama_admin;
             // $request->session()->put('id_admin',$auth->name);
+            $request->session()->put('nama_admin', Auth::user()->nama_admin);
+            $request->session()->put('id_admin', Auth::user()->id_admin);
             return redirect('dashboard');
         } else {
             return back();
