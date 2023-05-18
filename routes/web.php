@@ -30,6 +30,8 @@ Route::get('/', [AuthController::class, 'getdata'])->name('auth');
 
 Route::post('/authLogin', [AuthController::class, 'login'])->name('authLogin');
 
+Route::post('/auth/update', [AuthController::class, 'update'])->name('auth.update');
+
 Route::group(['middleware'=>['auth']], function(){
 Route::get('/dashboard', [DashboardController::class, 'getdata'])->name('dashboard');
 
@@ -41,7 +43,11 @@ Route::get('/buku', [BukuController::class, 'getdata'])->name('buku');
 
 Route::get('/peminjaman', [PeminjamanController::class, 'getdata'])->name('peminjaman');
 
+Route::post('/peminjaman/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');
+
 Route::get('/pengembalian', [PengembalianController::class, 'getdata'])->name('pengembalian');
+
+Route::post('/pengembalian/create', [PengembalianController::class, 'create'])->name('pengembalian.create');
 
 Route::get('/riwayat', [RiwayatController::class, 'getdata'])->name('riwayat');
 
@@ -55,6 +61,12 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/detailsiswa', [DetailSiswaController::class, 'getdata'])->name('detailsiswa');
 
+Route::post('/detailsiswa/create', [DetailSiswaController::class, 'create'])->name('detailsiswa.create');
+
+Route::post('/detailsiswa/update', [DetailSiswaController::class, 'update'])->name('detailsiswa.update');
+
+Route::post('/detailsiswa/delete', [DetailSiswaController::class, 'delete'])->name('detailsiswa.delete');
+
 Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.create');
 
 Route::post('/buku/create', [BukuController::class, 'create'])->name('buku.create');
@@ -62,8 +74,6 @@ Route::post('/buku/create', [BukuController::class, 'create'])->name('buku.creat
 Route::post('/buku/update', [BukuController::class, 'update'])->name('buku.update');
 
 Route::post('/buku/delete', [BukuController::class, 'delete'])->name('buku.delete');
-
-Route::post('/auth/update', [BukuController::class, 'update'])->name('auth.update');
 
 Route::post('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
 

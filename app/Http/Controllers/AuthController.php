@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\data_admin;
 use Validator;
 use Auth;
@@ -35,7 +36,7 @@ class AuthController extends Controller
         DB::table('data_admin')->where('nama_admin',$request->nama)->update([
             'password' => bcrypt($request->password),
         ]);
-        return redirect('auth');
+        return back();
     }
 
     public function logout(Request $request)    

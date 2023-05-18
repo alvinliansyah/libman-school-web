@@ -94,9 +94,6 @@
                      <div class="field input-field">
                        <input type="password" class="form-control" style="height: 50px;" placeholder="Password" name="password" required>
                      </div>
-                     <div class="field input-field">
-                       <input type="password" class="form-control" style="height: 50px;" placeholder="Konfirmasi password" name="konfirm_password" required>
-                     </div>
                      <div class="button input-box">
                        <input type="submit" value="Simpan" name="simpan">
                      </div>

@@ -23,24 +23,22 @@
 									<th>TGL PEMINJAMAN</th>
 									<th>TGL PENGEMBALIAN</th>
 									<th>ID ADMIN</th>
-									<th>AKSI</th>
 								</tr>
 							</thead>
 							<tbody>
+							<?php
+								$i=1;
+								?>
+								@foreach($peminjaman as $p)
 								<tr>
-									<td>NO</td>
-									<td>KODE PEMINJAMAN</td>
-									<td>NIS</td>
-									<td>KODE BUKU</td>
-									<td>JUMLAH</td>
-									<td>TGL PEMINJAMAN</td>
-									<td>TGL PENGEMBALIAN</td>
-									<td>ID ADMIN</td>
-									<td>
-									<div class="d-grid gap-2 d-md-flex justify-content-md">
-									<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditData"><i class='bx bx-edit icon bx-xs'>&nbsp;Edit</i></button>
-									</div>
-									</td>
+									<td><?php echo $i ?></td>
+									<td>{{ $p->id_peminjaman }}</td>
+									<td>{{ $p->NIS }}</td>
+									<td>{{ $p->id_buku }}</td>
+									<td>{{ $p->qty }}</td>
+									<td>{{ $p->tanggal_peminjaman }}</td>
+									<td>{{ $p->tanggal_pengembalian }}</td>
+									<td>{{ $p->id_admin }}</td>
 						<!-- Awal Modal -->
 					<div class="modal fade" id="modalTambahTransaksi" data-bs-backdrop="static" data-bs-keyboard="false"
 					tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -51,40 +49,41 @@
 								<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
-							<form method="POST" action="tambahPinjam.php">
+							<form method="POST" action="/peminjaman/create">
+								@csrf
 							<div class="modal-body">
 								<div class="mb-3">
 									<label class="form-label">Kode Peminjaman</label>
-									<input type="text" class="form-control" name="text-kodepeminjaman"
-										placeholder="Kode Peminjaman" value="" readonly>
+									<input type="text" class="form-control" name="text_kodepeminjaman"
+										placeholder="Kode Peminjaman" value="" required>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">NIS</label>
-									<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" class="form-control" name="number-nis"
+									<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" class="form-control" name="number_nis"
 										placeholder="NIS" required>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Kode Buku</label>
-									<input type="text" class="form-control" name="text-kodebuku"
+									<input type="text" class="form-control" name="text_kodebuku"
 										placeholder="Kode Buku" required>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Jumlah</label>
-									<input type="text" class="form-control" name="text-jumlah"
+									<input type="text" class="form-control" name="text_jumlah"
 										value=1 readonly>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">TGL Peminjaman</label>
-									<input type="date" id="demo" class="form-control" name="dt-peminjaman" required>
+									<input type="date" id="demo" class="form-control" name="dt_peminjaman" required>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">TGL Pengembalian</label>
-									<input type="date" id="demo2" class="form-control" name="dt-pengembalian" required>
+									<input type="date" id="demo2" class="form-control" name="dt_pengembalian" required>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Kode Admin</label>
-									<input type="text" class="form-control" name="text-kodeadmin"
-										placeholder="Kode Admin" value="" readonly>
+									<input type="text" class="form-control" name="text_kodeadmin"
+										placeholder="Kode Admin" value="{{session()->get('id_admin')}}" readonly>
 								</div>
 
 							</div>
@@ -97,62 +96,11 @@
 					</div>
 				</div>
 				<!-- Akhir Modal -->
-				<!-- Awal Modal Edit Data -->
-				<div class="modal fade" id="modalEditData" data-bs-backdrop="static" data-bs-keyboard="false"
-							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header text-bg-primary mb-3">
-										<h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Transaksi Peminjaman</h1>
-										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-											aria-label="Close"></button>
-									</div>
-									<form method="POST" action="editPinjam.php">
-									<div class="modal-body">
-								<div class="mb-3">
-									<label class="form-label">Kode Peminjaman</label>
-									<input type="text" class="form-control" name="text-kodepeminjaman"
-										placeholder="Kode Peminjaman" value="" readonly>
-								</div>
-								<div class="mb-3">
-									<label class="form-label">NIS</label>
-									<input type="number" oninput="" maxlength="4" class="form-control" name="number-nis"
-										placeholder="NIS" value="" required>
-								</div>
-								<div class="mb-3">
-									<label class="form-label">Kode Buku</label>
-									<input type="text" class="form-control" name="text-kodebuku"
-										placeholder="Kode Buku" value="" required>
-								</div>
-								<div class="mb-3">
-									<label class="form-label">Jumlah</label>
-									<input type="text" class="form-control" name="text-jumlah"
-										placeholder="Nama Siswa" value=1 readonly>
-								</div>
-								<div class="mb-3">
-									<label class="form-label">TGL Peminjaman</label>
-									<input type="date" id="demo" class="form-control" name="dt-peminjaman" value="" required>
-								</div>
-								<div class="mb-3">
-									<label class="form-label">TGL Pengembalian</label>
-									<input type="date" id="demo2" class="form-control" name="dt-pengembalian" value="" required>
-								</div>
-								<div class="mb-3">
-									<label class="form-label">Kode Admin</label>
-									<input type="text" class="form-control" name="text-kodeapadmin"
-										placeholder="Kode Admin" value="" readonly>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="submit" class="btn btn-primary" name="button-simpan">Simpan</button>
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
-							</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<!-- Akhir Modal -->
 						</tr>
+						<?php
+								$i++;
+								?>
+						@endforeach
 							</tbody>
 						</table>
 						</div>

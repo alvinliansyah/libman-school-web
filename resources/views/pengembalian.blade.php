@@ -25,19 +25,23 @@
 								</tr>
 							</thead>
 							<tbody>
+							<?php
+								$i=1;
+								?>
+								@foreach($kembali as $k)
 								<tr>
-									<td>NO</td>
-									<td>KODE PEMINJAMAN</td>
-									<td>NIS</td>
-									<td>KODE BUKU</td>
-									<td>JUMLAH</td>
-									<td>TGL PEMINJAMAN</td>
-									<td>ID ADMIN</td>
+									<td><?php echo $i ?></td>
+									<td>{{ $k->id_peminjaman }}</td>
+									<td>{{ $k->NIS }}</td>
+									<td>{{ $k->id_buku }}</td>
+									<td>{{ $k->qty }}</td>
+									<td>{{ $k->tanggal_pengembalian }}</td>
+									<td>{{ $k->id_admin }}</td>
 									<td>
-											<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSelesaiData" style= "color:white; text-decoration: none; font-weight: normal;"><i class='bx bx-check-square icon bx-xs'>&nbsp;Selesai</i></button>	
+											<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSelesaiData<?=$i?>" style= "color:white; text-decoration: none; font-weight: normal;"><i class='bx bx-check-square icon bx-xs'>&nbsp;Selesai</i></button>	
 									</td>
 				<!-- Awal Modal Selesai Data -->
-				<div class="modal fade" id="modalSelesaiData" data-bs-backdrop="static" data-bs-keyboard="false"
+				<div class="modal fade" id="modalSelesaiData<?=$i?>" data-bs-backdrop="static" data-bs-keyboard="false"
 							tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -46,41 +50,42 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="">
+									<form method="POST" action="/pengembalian/create">
+										@csrf
 									<div class="modal-body">
 								<div class="mb-3">
 									<label class="form-label">Kode Pengembalian</label>
-									<input type="text" class="form-control" name="text-kodepengembalian"
-										placeholder="Kode Pengembalian" value="" readonly>
+									<input type="text" class="form-control" name="text_kodepengembalian"
+										placeholder="Kode Pengembalian" value="" required>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Kode Peminjaman</label>
-									<input type="text" class="form-control" name="text-kodepeminjaman"
-										value="" readonly>
+									<input type="text" class="form-control" name="text_kodepeminjaman"
+										value="{{ $k->id_peminjaman }}" readonly>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">NIS</label>
-									<input type="number" class="form-control" name="number-nis"
-										value="" readonly>
+									<input type="number" class="form-control" name="number_nis"
+										value="{{ $k->NIS }}" readonly>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Kode Buku</label>
-									<input type="text" class="form-control" name="text-kodebuku"
-										value="" readonly>
+									<input type="text" class="form-control" name="text_kodebuku"
+										value="{{ $k->id_buku }}" readonly>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Jumlah</label>
-									<input type="text" class="form-control" name="text-jumlah"
+									<input type="text" class="form-control" name="text_jumlah"
 										value=1 readonly>
 								</div>
 								<div class="mb-3">
-									<label class="form-label">TGL Peminjaman</label>
-									<input type="date" class="form-control" name="dt-peminjaman" value="" readonly>
+									<label class="form-label">TGL Pengembalian</label>
+									<input type="date" class="form-control" name="dt_pengembalian" value="{{ $k->tanggal_pengembalian }}" readonly>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">ID Admin</label>
-									<input type="text" class="form-control" name="text-kodeadmin"
-										value="" readonly required>
+									<input type="text" class="form-control" name="text_kodeadmin"
+										value="{{ $k->id_admin }}" readonly required>
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -91,10 +96,14 @@
 								</div>
 							</div>
 						</div>
+						<!-- Akhir Modal -->
 						</tr>
+						<?php
+								$i++;
+								?>
+						@endforeach
 							</tbody>
 						</table>
-						<!-- Akhir Modal -->
 						</div>
 						</div>
 			</div>

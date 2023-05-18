@@ -29,16 +29,24 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php
+								$i=1;
+								?>
+								@foreach($riwayat as $r)
 								<tr>
-									<td>NO</td>
-									<td>NAMA SISWA</td>
-									<td>NIS</td>
-									<td>JUDUL BUKU</td>
-									<td>KODE BUKU</td>
-									<td>TGL PEMINJAMAN</td>
-									<td>TGL PENGEMBALIAN</td>
-									<td>NAMA ADMIN</td>
+									<td><?php echo $i ?></td>
+									<td>{{ $r->nama_siswa }}</td>
+									<td>{{ $r->NIS }}</td>
+									<td>{{ $r->judul_buku }}</td>
+									<td>{{ $r->id_buku }}</td>
+									<td>{{ $r->tanggal_peminjaman }}</td>
+									<td>{{ $r->tanggal_pengembalian }}</td>
+									<td>{{ $r->nama_admin }}</td>
 								</tr>
+								<?php
+								$i++;
+								?>
+						@endforeach
 							</tbody>
 						</table>
 						</div>
