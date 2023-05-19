@@ -39,13 +39,13 @@ class LoginController extends Controller
             
 
             return response()->json([
-                'status' => 'true',
+                'status' => true,
                 'message' => 'Login Berhasil',
                 'data' => $user
             ]);
         }else{
             return response()->json([
-                'status' => 'false',
+                'status' => false,
                 'message' => 'Login Gagal',
             ]);
     }

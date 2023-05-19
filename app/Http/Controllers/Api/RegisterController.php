@@ -38,7 +38,7 @@ class RegisterController extends Controller
             DB::table('data_siswa')->insert($insertData);
 
             return response()->json([
-                'status' => 'true',
+                'status' => true,
                 'massage' => 'akun berhasil didaftar',
                 'data' => $insertData = array(
                     'NIS' => $nis,

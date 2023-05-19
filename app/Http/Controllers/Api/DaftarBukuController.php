@@ -10,15 +10,11 @@ class DaftarBukuController extends Controller
 {
     public function daftarbuku()
     {
-        // Menjalankan query
         $result = DB::table('buku_favorit')->get();
 
-        // Membuat array untuk menampung hasil query
         $response = array();
 
-        // Menampilkan hasil query
         if ($result->count() > 0) {
-            // Output data satu per satu
             foreach ($result as $row) {
                 array_push($response, array(
                     "id_favorit" => $row->id_favorit,
@@ -30,8 +26,6 @@ class DaftarBukuController extends Controller
         } else {
             $response['message'] = "Tidak ada data";
         }
-
-        // Menampilkan respon dalam format JSON
         return response()->json($response);
     }
 }
