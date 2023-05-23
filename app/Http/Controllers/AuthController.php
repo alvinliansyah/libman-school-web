@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\data_admin;
-use Validator;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -17,7 +15,9 @@ class AuthController extends Controller
     
     public function login(Request $request)
     {
-        if(Auth::guard('web')->attempt(['nama_admin'=> $request->nama_admin, 'password'=> $request->password])){
+        $webCredentials = $request->only('nama_admin', 'password');
+
+        if(Auth::guard('web')->attempt($webCredentials)){
             // $auth = Auth::user();
             // $value = $request->session()->get('nama_admin');
             // $succes['nama_admin']=$auth->nama_admin;
@@ -25,8 +25,9 @@ class AuthController extends Controller
             $request->session()->put('nama_admin', Auth::user()->nama_admin);
             $request->session()->put('id_admin', Auth::user()->id_admin);
             $request->session()->put('password', Auth::user()->password);
-            return redirect('dashboard');
+            return redirect()->intended('/dashboard');
         } else {
+            // dd($webCredentials);
             return back();
         }
     }
