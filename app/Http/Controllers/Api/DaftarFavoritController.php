@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
@@ -14,14 +13,21 @@ class DaftarFavoritController extends Controller
 
         $data = DB::table('buku_favorit')
             ->join('data_buku', 'buku_favorit.id_buku', '=', 'data_buku.id_buku')
-            ->select('buku_favorit.nama_buku', 'data_buku.semester', 'data_buku.gambar')
+            ->select('data_buku.id_buku','buku_favorit.nama_buku', 'data_buku.semester', 'data_buku.gambar','data_buku.penerbit','data_buku.tahun_terima')
             ->where('buku_favorit.NIS', $nis)
             ->get();
 
         if ($data->count() > 0) {
-            return response()->json($data);
+            return response()->json([
+                'status' => true,
+                'message' => 'Data ditemukan',
+                'data' => $data
+            ]);
         } else {
-            return response()->json('Data Kosong');
+            return response()->json([
+                'status' => false,
+                'message' => 'Data kosong'
+            ], 404);
         }
     }
 }

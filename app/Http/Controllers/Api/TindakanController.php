@@ -15,13 +15,20 @@ class TindakanController extends Controller
             ->join('data_buku', 'detail_pengembalian.id_buku', '=', 'data_buku.id_buku')
             ->join('pengembalian', 'pengembalian.id_pengembalian', '=', 'detail_pengembalian.id_pengembalian')
             ->where('pengembalian.NIS', $nis)
-            ->select('data_buku.judul_buku', 'pengembalian.id_pengembalian', 'data_buku.semester', 'data_buku.gambar', 'pengembalian.tanggal_pengembalian')
+            ->select('data_buku.id_buku','data_buku.penerbit','data_buku.tahun_terima', 'data_buku.judul_buku', 'pengembalian.id_pengembalian', 'data_buku.semester', 'data_buku.gambar', 'pengembalian.tanggal_pengembalian')
             ->get();
 
+        $response = array();
+
         if ($data->count() > 0) {
-            return response()->json($data);
+            $response['status'] = true;
+            $response['message'] = "Data tindakan ditemukan";
+            $response['data'] = $data;
         } else {
-            return response()->json('Data Kosong');
+            $response['status'] = false;
+            $response['message'] = "Data tindakan tidak ditemukan";
         }
+
+        return response()->json($response);
     }
 }

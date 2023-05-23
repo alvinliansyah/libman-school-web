@@ -11,8 +11,9 @@ class ProfileController extends Controller
     public function profile(Request $request)
     {
         $nis = $request->input('NIS');
-        $id_data_kelas = $request->input('id_data_kelas');
+        $idDataKelas = $request->input('id_data_kelas');
         $noTelp = $request->input('notelp');
+        $jk = $request->input('jenis_kelamin');
 
         $row = DB::table('data_siswa')->select('gambar')->where('NIS', $nis)->first();
         $oldImage = $row->gambar;
@@ -38,8 +39,9 @@ class ProfileController extends Controller
                 DB::table('data_siswa')
                     ->where('NIS', $nis)
                     ->update([
-                        'id_data_kelas' => $id_data_kelas,
-                        'gambar' => $newFileName
+                        'id_data_kelas' => $idDataKelas,
+                        'gambar' => $newFileName,
+                        'jenis_kelamin' => $jk,
                     ]);
 
                 $response['status'] = true;
@@ -52,8 +54,9 @@ class ProfileController extends Controller
             DB::table('data_siswa')
                 ->where('NIS', $nis)
                 ->update([
-                    'id_data_kelas' => $id_data_kelas,
-                    'notelp' => $noTelp
+                    'id_data_kelas' => $idDataKelas,
+                    'notelp' => $noTelp,
+                    'jenis_kelamin' => $jk,
                 ]);
 
             $response['status'] = true;

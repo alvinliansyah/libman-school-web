@@ -17,7 +17,7 @@ class RegisterController extends Controller
         $kelas = $request->input('kelas');
         $jenisKelamin = $request->input('jenis_kelamin');
         $noTelp = $request->input('notelp');
-        $gambar = $request->input('gambar');
+        $gambar = 'default.png';
         $id_data_kelas = $request->input('id_data_kelas');
 
         $checkNIS = DB::table('data_siswa')->where('NIS', $nis)->count();

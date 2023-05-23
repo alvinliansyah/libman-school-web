@@ -15,9 +15,6 @@ class LoginController extends Controller
     {
         // $nis = $request->input('NIS');
         // $password = $request->input('password');
-
-            
-
         // if ($user) {
         //     return response()->json([
         //         'status' => 'Success',
@@ -34,10 +31,8 @@ class LoginController extends Controller
         if ($login) {
             $user = Auth::guard('mobile')->user();
             $user->api_token = Str::random(100);
-            $user->save();
+            // $user->save();
             // $user->makeVisible('api_token');
-            
-
             return response()->json([
                 'status' => true,
                 'message' => 'Login Berhasil',
