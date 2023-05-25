@@ -32,7 +32,7 @@ Route::post('/authLogin', [AuthController::class, 'login'])->name('authLogin');
 
 Route::post('/auth/update', [AuthController::class, 'update'])->name('auth.update');
 
-Route::group(['middleware'=>['auth']], function(){
+Route::group(['middleware' => 'auth:web'], function (){
 Route::get('/dashboard', [DashboardController::class, 'getdata'])->name('dashboard');
 
 Route::get('/siswa', [SiswaController::class, 'getdata'])->name('siswa');
