@@ -16,7 +16,8 @@ class RiwayatController extends Controller
         ->join('data_buku', 'data_buku.id_buku', '=', 'detail_peminjaman.id_buku')
         ->select('data_siswa.nama_siswa', 'data_siswa.NIS', 'data_buku.judul_buku', 'data_buku.id_buku', 'peminjaman.tanggal_peminjaman', 'peminjaman.tanggal_pengembalian', 'data_admin.nama_admin')
         ->get();
+        $gambar = DB::table('data_admin')->get();
 
-        return view('riwayat', ['riwayat' => $dataPeminjaman]);
+        return view('riwayat', ['riwayat' => $dataPeminjaman, 'gambar'=> $gambar]);
     }
 }

@@ -21,7 +21,15 @@
 						<div class="card-body">
 						<div class="profile-form">
 						<form action="#">
-						<center><div><img src="{!! asset('assets/img/default-avatar.png') !!}" alt="" class="img-profile"></div></center>
+						@foreach($gambar as $g)
+						@if($g->id_admin == session()->get('id_admin'))
+						@if($g->gambar == null)
+						<center><div><img src="assets/img/default-avatar.png" alt="" class="img-profile"></div></center>
+						@else
+						<center><div><img src="assets/img/admin/{{$g->gambar}}" alt="" class="img-profile"></div></center>
+						@endif
+						@endif
+						@endforeach
 						<br/>
 						<div>
 						<label class="form-label">Kode Admin</label>
@@ -47,26 +55,27 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="editAkun.php" enctype="multipart/form-data">
+									<form method="POST" action="/profile/update" enctype="multipart/form-data">
+										@csrf
 									<div class="modal-body">
 										<div class="mb-3">
 											<label class="form-label">Kode Admin</label>
-											<input type="text" class="form-control" name="text-kodeadmin"
-												value="" readonly>
+											<input type="text" class="form-control" name="text_kodeadmin"
+											value="{{session()->get('id_admin')}}" readonly>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Nama Admin</label>
-											<input type="text" class="form-control" name="text-namalengkapadmin"
-												placeholder="Nama Admin" value="" required>
+											<input type="text" class="form-control" name="text_namalengkapadmin"
+											value="{{session()->get('nama_admin')}}" required>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>
 											<input type="password" class="form-control" name="password"
-												placeholder="Password" value=""required>
+											value="{{session()->get('password')}}" required>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Foto Profile</label>
-											<input id="file-fotoprofile" accept="image/*" type="file" class="form-control" name="file-fotoprofile" required>
+											<input id="file-fotoprofile" accept="image/*" type="file" class="form-control" name="file_fotoprofile" required>
 										</div>
 
 									</div>
@@ -89,11 +98,12 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="hapusAkun.php">
+									<form method="POST" action="/profile/delete">
 									<div class="modal-body">Apakah anda yakin ingin menghapus Akun?</div>
 									<div class="mb-3">
-											<input type="hidden" class="form-control" name="text-kodeadmin"
-												value="" required>
+										@csrf
+											<input type="hidden" class="form-control" name="text_kodeadminh"
+											value="{{session()->get('id_admin')}}" required>
 										</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-danger" name="button-submithapusdata">Hapus</button>

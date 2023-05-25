@@ -69,6 +69,10 @@ Route::post('/detailsiswa/delete', [DetailSiswaController::class, 'delete'])->na
 
 Route::post('/admin/create', [AdminController::class, 'create'])->name('admin.create');
 
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::post('/profile/delete', [ProfileController::class, 'delete'])->name('profile.delete');
+
 Route::post('/buku/create', [BukuController::class, 'create'])->name('buku.create');
 
 Route::post('/buku/update', [BukuController::class, 'update'])->name('buku.update');

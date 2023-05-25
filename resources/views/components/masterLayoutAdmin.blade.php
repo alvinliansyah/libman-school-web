@@ -57,7 +57,15 @@
 			<a style="color:white; text-decoration: none; font-weight: 600; font-size: 18px; position: absolute; top: 18px; right: 65px;">|</a>
 			&nbsp
 			<div class="profile">
-				<img src="{!! asset('assets/img/default-avatar.png') !!}" alt="">
+			@foreach($gambar as $g)
+						@if($g->id_admin == session()->get('id_admin'))
+						@if($g->gambar == null)
+						<center><div><img src="assets/img/default-avatar.png" alt="" class="img-profile"></div></center>
+						@else
+						<center><div><img src="assets/img/admin/{{$g->gambar}}" alt="" class="img-profile"></div></center>
+						@endif
+						@endif
+						@endforeach
 				<ul class="profile-link">
 					<li><a href="{{route('profile')}}"><i class='bx bx-user icon'></i> Profile</a></li>
 				</ul>
@@ -167,6 +175,7 @@
 	}
 	}
 </script>
+@include('sweetalert::alert')
 
 </body>
 </html>

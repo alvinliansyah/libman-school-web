@@ -30,7 +30,6 @@
 									<th>PASSWORD</th>
 									<th>NO TELEPHONE</th>
 									<th>JENIS KELAMIN</th>
-									<th>TOKEN</th>
 									<th>GAMBAR</th>
 									<th>AKSI</th>
 								</tr>
@@ -47,7 +46,6 @@
 								<td>{{ $s->password }}</td>
 								<td>{{ $s->notelp }}</td>
 								<td>{{ $s->jenis_kelamin }}</td>
-								<td>{{ $s->token }}</td>
 								<td>{{ $s->gambar }}</td>
 								<td>
 								<div class="d-grid gap-2 d-md-flex justify-content-md">

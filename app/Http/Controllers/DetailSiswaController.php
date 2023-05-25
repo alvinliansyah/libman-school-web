@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DetailSiswaController extends Controller
 {
-    public function getdata()
+    public function getdata($id_data_kelas)
     {
-        return view('detailSiswa');
+        $gambar = DB::table('data_admin')->get();
+
+        return view('detailSiswa', ['gambar'=> $gambar]);
     }
 
     public function create(Request $request)
@@ -22,6 +25,7 @@ class DetailSiswaController extends Controller
             'notelp' => $request->number_noteltepon1,
             'id_data_kelas' => $request->kode_kelas1,
         ]);
+        alert()->success('Sukses','Berhasil Menambahkan Siswa');
         return back();
     }
 
@@ -36,6 +40,7 @@ class DetailSiswaController extends Controller
             'notelp' => $request->number_noteltepon,
             'id_data_kelas' => $request->kode_kelas,
         ]);
+        alert()->success('Sukses','Berhasil Mengubah Siswa');
         return back();
     }
 
@@ -45,6 +50,7 @@ class DetailSiswaController extends Controller
         ->where('NIS', $request->NIS3)
         ->delete();
 
+        alert()->success('Sukses','Berhasil Menghapus Siswa');
         return back();
     }
 }

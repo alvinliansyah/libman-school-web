@@ -26,11 +26,11 @@ class ProfileController extends Controller
 
             $newFileName = uniqid() . '.' . $fileExtension;
 
-            $uploadPath = 'uploads/' . $newFileName;
+            $uploadPath = 'upload/' . $newFileName;
 
-            if ($file->move(public_path('uploads'), $newFileName)) {
+            if ($file->move(public_path('upload'), $newFileName)) {
                 if (!empty($oldImage)) {
-                    $oldImagePath = public_path('uploads/' . $oldImage);
+                    $oldImagePath = public_path('upload/' . $oldImage);
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath);
                     }

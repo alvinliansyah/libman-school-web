@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\data_admin;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -12,7 +13,9 @@ class AdminController extends Controller
     {
         $admin = DB::table('data_admin')->get();
 
-        return view('admin', ['admin' => $admin]);
+        $gambar = DB::table('data_admin')->get();
+
+        return view('admin', ['admin' => $admin, 'gambar'=> $gambar]);
     }
 
     public function create(Request $request)
@@ -23,6 +26,7 @@ class AdminController extends Controller
                 'password' => bcrypt($request->password),
                 // 'gambar' => $request->tnama_tambahkategori,
             ]);
+            alert()->success('Sukses','Berhasil Menambahkan Admin');
             return redirect('admin');
     }
 }

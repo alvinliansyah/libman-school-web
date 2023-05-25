@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PengembalianController extends Controller
 {
@@ -17,8 +18,9 @@ class PengembalianController extends Controller
         })
         ->select('peminjaman.id_peminjaman', 'peminjaman.tanggal_pengembalian', 'detail_peminjaman.qty', 'peminjaman.NIS', 'detail_peminjaman.id_buku', 'peminjaman.id_admin')
         ->get();
+        $gambar = DB::table('data_admin')->get();
 
-        return view('pengembalian', ['kembali' => $dataPeminjaman]);
+        return view('pengembalian', ['kembali' => $dataPeminjaman, 'gambar'=> $gambar]);
     }
 
     public function create(Request $request)
@@ -38,6 +40,7 @@ class PengembalianController extends Controller
             'id_buku' => $request->text_kodebuku,
         ]);
 
+        alert()->success('Sukses','Berhasil Melakukan Pengembalian');
         return redirect('pengembalian');
     }
 }

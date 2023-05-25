@@ -13,6 +13,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
+@include('sweetalert::alert')
 <div class="loader-wrapper">
 	<span class="loader"><span class="loader-inner"></span></span>
 	</div>
@@ -163,5 +164,14 @@
 			$(".loader-wrapper").fadeOut("slow");
 		});
 	</script>
+  @if(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal Login',
+            text: '{{ session('error') }}',
+        });
+    </script>
+@endif
 </body>
 </html>
