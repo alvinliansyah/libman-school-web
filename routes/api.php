@@ -25,6 +25,8 @@ use App\Http\Controllers\Api\ProfileController;
 
 Route::post('login', [LoginController::class, 'login']);
 
+Route::post('sendToken', [LoginController::class, 'sendToken']);
+
 Route::post('register', [RegisterController::class, 'register']);
 
 Route::post('tindakan', [TindakanController::class, 'tindakan']);
