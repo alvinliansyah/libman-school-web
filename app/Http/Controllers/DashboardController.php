@@ -12,8 +12,11 @@ class DashboardController extends Controller
         $bukuada = DB::table('data_buku')->sum('jumlah');
         $bukupinjam = DB::table('detail_peminjaman')->sum('qty');
         $siswa = DB::table('data_siswa')->select('NIS')->count();
-        $gambar = DB::table('data_admin')->get();
+        $total = $bukuada+$bukupinjam;
+
+        $persentaseTersedia = ($bukuada/$total * 100);
+        $persentasePinjam = ($bukupinjam/$total * 100);
         
-        return view('dashboard', ['data_buku' => $bukuada, 'peminjaman' => $bukupinjam, 'siswa' => $siswa, 'gambar'=> $gambar]);
+        return view('dashboard', ['data_buku' => $bukuada, 'peminjaman' => $bukupinjam, 'siswa' => $siswa, 'persentaseTersedia' => $persentaseTersedia, 'persentasePinjam' => $persentasePinjam]);
     }
 }

@@ -86,4 +86,6 @@ Route::post('/siswa/update', [SiswaController::class, 'update'])->name('siswa.up
 Route::post('/siswa/delete', [SiswaController::class, 'delete'])->name('siswa.delete');
 
 Route::get('/detailsiswa/{id_data_kelas}', [SiswaController::class, 'detailSiswa'])->name('detailsiswa');
+
+
 });

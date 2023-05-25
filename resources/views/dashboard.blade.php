@@ -24,7 +24,7 @@
 							<p>Buku Tersedia Di Perpustakaan</p>
 						</div>
 					</div>
-					<span class="progress" data-value="100%"></span>
+					<span class="progress" data-value="{{ $persentaseTersedia }}%"></span>
 					<span class="label">bulan</span>
 				</div>
 				<div class="card shadow">
@@ -34,7 +34,7 @@
 							<p>Buku Sedang Proses Peminjaman</p>
 						</div>
 					</div>
-					<span class="progress" data-value="100%"></span>
+					<span class="progress" data-value="{{ $persentasePinjam }}%"></span>
 					<span class="label">bulan</span>
 				</div>
 				<div class="card shadow">
@@ -55,10 +55,7 @@
 					<h4 class="card-header text-bg-primary mb-3 fw-semibold"><center>Chart Buku
 					</center></h4>
 						<div class="card-body">
-						<div class="charts">
-						<div id="chart" id="doughnut"></div>
-						<canvas id="doughnut"></canvas>
-					</div>
+						<canvas id="doughnutChart"></canvas>
 						</div>
 						</div>
 			</div>
@@ -103,4 +100,41 @@
 			</footer>
 			<br/>		
 
+@endsection
+
+
+@section('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            var data_buku = {!! isset($data_buku) ? $data_buku : '[]' !!};
+            var peminjaman = {!! isset($peminjaman) ? $peminjaman : '[]' !!};
+
+            var ctx = document.getElementById('doughnutChart').getContext('2d');
+            var doughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Buku Tersedia Di Perpustakaan', 'Buku Sedang Proses Peminjaman'],
+                    datasets: [{
+                        label: 'Chart Buku',
+                        data: [data_buku, peminjaman],
+                        backgroundColor: [
+                            'rgba(255, 139, 3, 1)',
+                            'rgba(255, 76, 29, 1)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 139, 3, 1)',
+                            'rgba(255, 76, 29, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+    </script>
 @endsection
