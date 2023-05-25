@@ -8,25 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Models\data_siswa;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        // $nis = $request->input('NIS');
-        // $password = $request->input('password');
-        // if ($user) {
-        //     return response()->json([
-        //         'status' => 'Success',
-        //         'message' => 'Login Berhasil',
-        //         'data' => $user
-        //     ]);
-        // } else {
-        //     return response()->json([
-        //         'status' => 'Error',
-        //         'message' => 'Login Gagal'
-        //     ], 401);
-        // }
         $login = Auth::guard('mobile')->attempt($request->all());
         if ($login) {
             $user = Auth::guard('mobile')->user();
@@ -38,12 +25,30 @@ class LoginController extends Controller
                 'message' => 'Login Berhasil',
                 'data' => $user
             ]);
-        }else{
+        } else {
             return response()->json([
                 'status' => false,
                 'message' => 'Login Gagal',
             ]);
+        }
     }
-}
 
+    public function sendToken(Request $request)
+    {
+        $user = data_siswa::where('NIS', $request->input('NIS'))->first();
+        if ($user) {
+            $user->fcmToken = $request->input('fcmToken');
+            $user->save();
+            return response()->json([
+                'status' => true,
+                'message' => 'Token berhasil disimpan',
+                'data' => $user
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'User tidak ditemukan',
+            ]);
+        }
+    }
 }

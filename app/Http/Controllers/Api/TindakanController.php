@@ -15,7 +15,7 @@ class TindakanController extends Controller
             ->join('data_buku', 'detail_pengembalian.id_buku', '=', 'data_buku.id_buku')
             ->join('pengembalian', 'pengembalian.id_pengembalian', '=', 'detail_pengembalian.id_pengembalian')
             ->where('pengembalian.NIS', $nis)
-            ->select('data_buku.id_buku','data_buku.penerbit','data_buku.tahun_terima', 'data_buku.judul_buku', 'pengembalian.id_pengembalian', 'data_buku.semester', 'data_buku.gambar', 'pengembalian.tanggal_pengembalian')
+            ->select('data_buku.id_buku','data_buku.penerbit','data_buku.tahun_terima', 'data_buku.judul_buku', 'pengembalian.id_pengembalian', 'data_buku.semester', 'data_buku.gambar', 'pengembalian.tanggal_pengembalian','data_buku.jumlah','data_buku.judul_buku')
             ->get();
 
         $response = array();
