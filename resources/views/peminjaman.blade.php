@@ -39,6 +39,13 @@
 									<td>{{ $p->tanggal_peminjaman }}</td>
 									<td>{{ $p->tanggal_pengembalian }}</td>
 									<td>{{ $p->id_admin }}</td>
+								</tr>
+						<?php
+								$i++;
+								?>
+						@endforeach
+							</tbody>
+						</table>
 						<!-- Awal Modal -->
 					<div class="modal fade" id="modalTambahTransaksi" data-bs-backdrop="static" data-bs-keyboard="false"
 					tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -55,21 +62,26 @@
 								<div class="mb-3">
 									<label class="form-label">Kode Peminjaman</label>
 									<input type="text" class="form-control" name="text_kodepeminjaman"
-										placeholder="Kode Peminjaman" value="" required>
+										placeholder="Kode Peminjaman" value="{{$baru}}" readonly>
 								</div>
 								<div class="mb-3">
-									<label class="form-label">NIS</label>
-									<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" class="form-control" name="number_nis"
-										placeholder="NIS" required>
+											<label class="form-label">NAMA SISWA</label>
+											<select class="form-select" name="text_nis">
+												@foreach($siswa as $s)
+												<option value="{{ $s->NIS }}">{{ $s->NIS .'-'. $s->nama_siswa }}</option>
+												@endforeach
+											</select>
 								</div>
 								<div class="mb-3">
-									<label class="form-label">Kode Buku</label>
-									<input type="text" class="form-control" name="text_kodebuku"
-										placeholder="Kode Buku" required>
+											<label class="form-label">Judul Buku</label>
+											<select class="form-select" name="text_kodebuku">
+												@foreach($buku as $b)
+												<option value="{{ $b->id_buku }}">{{ $b->judul_buku }}</option>
+												@endforeach
+											</select>
 								</div>
 								<div class="mb-3">
-									<label class="form-label">Jumlah</label>
-									<input type="text" class="form-control" name="text_jumlah"
+									<input type="hidden" class="form-control" name="text_jumlah"
 										value=1 readonly>
 								</div>
 								<div class="mb-3">
@@ -83,7 +95,8 @@
 								<div class="mb-3">
 									<label class="form-label">Kode Admin</label>
 									<input type="text" class="form-control" name="text_kodeadmin"
-										placeholder="Kode Admin" value="{{session()->get('id_admin')}}" readonly>
+										placeholder="Kode Admin" value="{{session()->get('nama_admin')}}" readonly>
+										<input type="hidden" name="id_admin" value="{{ session()->get('id_admin') }}">
 								</div>
 
 							</div>
@@ -96,13 +109,6 @@
 					</div>
 				</div>
 				<!-- Akhir Modal -->
-						</tr>
-						<?php
-								$i++;
-								?>
-						@endforeach
-							</tbody>
-						</table>
 						</div>
 						</div>
 			</div>

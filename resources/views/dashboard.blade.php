@@ -67,16 +67,19 @@
 						<div class="table-wrapper-scroll-y my-custom-scrollbar">
 						<table class="table table-bordered table-striped mb-0">
 						<tbody>
+						@foreach($datapeminjaman as $dp)
 							<tr>
 							<td>
-							<span style="color:black; text-decoration: none; font-weight: 600; font-size: 16px;">(nama)<br/><span class="badge text-bg-danger p-3 bg-opacity-25 text-body" style="text-decoration: none; font-weight: 300; font-size: 14px;">Status : Buku (nama buku) Harus dikembalikan sebelum (jadwal)</span></span>
+							<span style="color:black; text-decoration: none; font-weight: 600; font-size: 16px;">{{ $dp->nama_siswa }}<br/><span class="badge text-bg-danger p-3 bg-opacity-25 text-body" style="text-decoration: none; font-weight: 300; font-size: 14px;">Status : Buku {{ $dp->judul_buku }} Harus dikembalikan sebelum {{ $dp->tanggal_pengembalian }}</span>
+					<form action="api/sendNotification" method="post"> <!-- Form untuk mengirim token FCM -->
+                    @csrf
+                    <input type="hidden" name="fcm_token" value="{{ $dp->fcmToken }}">
+					<input type="hidden" name="NIS" value="{{ $dp->NIS }}">
+                    <button type="submit" class="btn btn-primary" name="button_notif">Kirim</button>
+                	</form></span>
 							</td>
 							</tr>
-							<tr>
-							<td>
-							<span style="color:black; text-decoration: none; font-weight: 600; font-size: 16px;">(nama)<br/><span class="badge text-bg-warning p-3 bg-opacity-25 text-body" style="text-decoration: none; font-weight: 300; font-size: 14px;">Status : Buku (nama buku) Harus dikembalikan sebelum (jadwal)</span></span>
-							</td>
-							</tr>
+						@endforeach
 						</tbody>
 						</table>
 

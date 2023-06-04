@@ -41,6 +41,7 @@ class ProfileController extends Controller
                     ->update([
                         'id_data_kelas' => $idDataKelas,
                         'gambar' => $newFileName,
+                        'notelp' => $noTelp,
                         'jenis_kelamin' => $jk,
                     ]);
 

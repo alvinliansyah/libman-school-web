@@ -19,8 +19,9 @@ class BukuController extends Controller
     public function create(Request $request)
     {
         DB::table('data_buku')->insert([
-                'id_buku' => $request->text_kodebuku,
+                // 'id_buku' => $request->text_kodebuku,
                 'judul_buku' => $request->text_judul,
+                'semester' => $request->text_semester,
                 'penerbit' => $request->text_penerbit,
                 'tahun_terima' => $request->text_tahunterima,
                 'jumlah' => $request->text_jumlah,
@@ -37,8 +38,10 @@ class BukuController extends Controller
             'penerbit' => $request->text_penerbite,
             'tahun_terima' => $request->text_tahunterimae,
             'jumlah' => $request->text_jumlahe,
-            // 'gambar' => $request->file_fotobuku,
+            'gambar' => $request->file_fotobukue->getClientOriginalName(),
         ]);
+        $destinationPath = public_path().'/upload' ;
+        $request->file_fotobukue->move($destinationPath,$request->file_fotobukue->getClientOriginalName());
         alert()->success('Sukses','Berhasil Mengubah Buku');
         return redirect('buku');
     }
@@ -49,4 +52,15 @@ class BukuController extends Controller
     alert()->success('Sukses','Berhasil Menghapus Buku');
 	return redirect('buku');
     }
+
+    public function detailBuku($id_buku)
+{
+    $kelas = DB::table('detail_buku')->where('id_buku', $id_buku)->first();
+
+    $ambil = DB::table('detail_buku')->where('id_buku', $id_buku)->get();
+
+    $gambar = DB::table('data_admin')->get();
+    
+    return view('detailBuku', ['detail_buku' => $kelas, 'buku' => $ambil, 'gambar'=> $gambar]);
+}
 }

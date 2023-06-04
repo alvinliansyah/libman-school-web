@@ -35,7 +35,7 @@ class DetailSiswaController extends Controller
         ->where('NIS', $request->number_nis)
         ->update([
             'nama_siswa' => $request->text_namasiswa,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'jenis_kelamin' => $request->text_jekel,
             'notelp' => $request->number_noteltepon,
             'id_data_kelas' => $request->kode_kelas,

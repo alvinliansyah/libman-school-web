@@ -15,8 +15,12 @@ class PeminjamanController extends Controller
         ->select('peminjaman.id_peminjaman', 'peminjaman.tanggal_peminjaman', 'peminjaman.tanggal_pengembalian', 'detail_peminjaman.qty', 'peminjaman.NIS', 'peminjaman.id_admin', 'detail_peminjaman.id_buku')
         ->get();
         $gambar = DB::table('data_admin')->get();
+        $buku = DB::table('data_buku')->where('jumlah', '>', 0)->get();
+        $siswa = DB::table('data_siswa')->get();
+        $kd_pinjam = DB::table('peminjaman')->max('id_peminjaman');
+        $baru = $kd_pinjam +1;
 
-        return view('peminjaman', ['peminjaman' => $dataPeminjaman, 'gambar'=> $gambar]);
+        return view('peminjaman', ['peminjaman' => $dataPeminjaman, 'gambar'=> $gambar, 'buku'=>$buku, 'siswa'=>$siswa, "baru"=>$baru]);
     }
 
     public function create(Request $request)
@@ -25,8 +29,8 @@ class PeminjamanController extends Controller
             'id_peminjaman' => $request->text_kodepeminjaman,
             'tanggal_peminjaman' => $request->dt_peminjaman,
             'tanggal_pengembalian' => $request->dt_pengembalian,
-            'NIS' => $request->number_nis,
-            'id_admin' => $request->text_kodeadmin,
+            'NIS' => $request->text_nis,
+            'id_admin' => $request->id_admin,
         ]);
 
         DB::table('detail_peminjaman')->insert([

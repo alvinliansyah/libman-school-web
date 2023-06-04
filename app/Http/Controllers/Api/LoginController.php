@@ -14,10 +14,24 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $login = Auth::guard('mobile')->attempt($request->all());
+        $validator = Validator::make($request->all(), [
+            'NIS' => 'required',
+            'password' => 'required',
+            'fcmToken' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Login Gagal',
+                'data' => $validator->errors()
+            ], 400);
+        }
+
+        $login = Auth::guard('mobile')->attempt(['NIS' => $request->NIS, 'password' => $request->password]);
         if ($login) {
             $user = Auth::guard('mobile')->user();
             $user->api_token = Str::random(100);
+            $user->fcmToken = $request->fcmToken;
             $user->save();
             // $user->makeVisible('api_token');
             return response()->json([

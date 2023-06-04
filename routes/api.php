@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\DaftarBukuController;
 use App\Http\Controllers\Api\DaftarFavoritController;
 use App\Http\Controllers\Api\HistoryController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\DaftarkelasController;
+use App\Http\Controllers\Api\FCMController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,13 @@ Route::post('tambahfavorit', [TambahFavoritController::class, 'tambahfavorit']);
 
 Route::get('daftarbuku', [DaftarBukuController::class, 'daftarbuku']);
 
+Route::get('daftarkelas', [DaftarkelasController::class, 'daftarkelas']);
+
+Route::get('/statistikbuku', [DaftarBukuController::class, 'getBookStatistics']);
+
 Route::post('daftarfavorit', [DaftarFavoritController::class, 'daftarfavorit']);
+
+Route::post('sendNotification', [FCMController::class, 'sendNotification']);
 
 Route::post('history', [HistoryController::class, 'history']);
 

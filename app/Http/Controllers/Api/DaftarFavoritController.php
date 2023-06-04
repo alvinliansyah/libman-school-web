@@ -13,7 +13,7 @@ class DaftarFavoritController extends Controller
 
         $data = DB::table('buku_favorit')
             ->join('data_buku', 'buku_favorit.id_buku', '=', 'data_buku.id_buku')
-            ->select('data_buku.id_buku','buku_favorit.nama_buku', 'data_buku.semester', 'data_buku.gambar','data_buku.penerbit','data_buku.tahun_terima','data_buku.jumlah')
+            ->select('data_buku.id_buku','buku_favorit.nama_buku', 'data_buku.semester', 'data_buku.gambar','data_buku.penerbit','data_buku.tahun_terima','data_buku.jumlah','data_buku.deskripsi')
             ->where('buku_favorit.NIS', $nis)
             ->get();
 

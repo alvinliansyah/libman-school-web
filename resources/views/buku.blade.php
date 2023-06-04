@@ -19,6 +19,7 @@
 									<th>NO</th>
 									<th>KODE BUKU</th>
 									<th>JUDUL</th>
+									<th>SEMESTER</th>
 									<th>PENERBIT</th>
 									<th>TAHUN TERIMA</th>
 									<th>JUMLAH</th>
@@ -35,12 +36,18 @@
 									<td><?php echo $i ?></td>
 									<td>{{ $b->id_buku }}</td>
 									<td>{{ $b->judul_buku }}</td>
+									<td>{{ $b->semester }}</td>
 									<td>{{ $b->penerbit }}</td>
 									<td>{{ $b->tahun_terima }}</td>
 									<td>{{ $b->jumlah }}</td>
 									<td>{{ $b->gambar }}</td>
 									<td>
 									<div class="d-grid gap-2 d-md-flex justify-content-md">
+									<button type="button" class="btn btn-primary" >
+												<a href="{{route('detailBuku', ['id_buku' => $b->id_buku])}}" style= color:white; text-decoration: none; font-weight: normal;">
+													<i class='bx bx-show-alt icon'></i>
+												&nbsp;Lihat</a>
+											</button>
 											<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditData<?=$i;?>"><i class='bx bx-edit icon bx-xs'>&nbsp;Edit</i></button>
 											<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusData<?=$i;?>"><i class='bx bx-trash icon bx-xs'></i>&nbsp;Hapus</button>
 								</div>
@@ -59,14 +66,16 @@
 										@csrf
 									<div class="modal-body">
 										<div class="mb-3">
-											<label class="form-label">Kode Buku</label>
-											<input type="text" class="form-control" name="text_kodebuku"
-												placeholder="Kode Buku" required>
-										</div>
-										<div class="mb-3">
 											<label class="form-label">Judul</label>
 											<input type="text" class="form-control" name="text_judul"
 												placeholder="Judul" required>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Semester</label>
+											<select class="form-select" name="text_semester">
+												<option value="1">1</option>
+												<option value="2">2</option>
+											</select>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Penerbit</label>
@@ -82,10 +91,10 @@
 											<label class="form-label">Jumlah</label>
 											<input type="number" class="form-control" name="text_jumlah" required>
 										</div>
-										<div class="mb-3">
+										<!-- <div class="mb-3">
 											<label class="form-label">Foto Buku</label>
 											<input id="file-fotobuku" accept="image/*" type="file" class="form-control" name="file_fotobuku">
-										</div>
+										</div> -->
 									</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-primary"
@@ -108,7 +117,7 @@
 										<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
 											aria-label="Close"></button>
 									</div>
-									<form method="POST" action="/buku/update">
+									<form method="POST" action="/buku/update" enctype="multipart/form-data">
 										@csrf
 									<div class="modal-body">
 										<div class="mb-3">
@@ -120,6 +129,13 @@
 											<label class="form-label">Judul</label>
 											<input type="text" class="form-control" name="text_judule"
 											value='{{$b->judul_buku}}' placeholder="Judul" required>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Semester</label>
+											<select class="form-select" name="text_semester">
+												<option value="1">1</option>
+												<option value="2">2</option>
+											</select>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Penerbit</label>
@@ -138,8 +154,7 @@
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Foto Buku</label>
-											<input id="file-fotobuku" accept="image/*" type="file" class="form-control" name="file_fotobukue"
-											value='{{$b->gambar}}'>
+											<input id="file-fotobuku" accept="image/*" type="file" class="form-control" name="file_fotobukue" required>
 									</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-primary"
@@ -182,9 +197,9 @@
 						<?php
 								$i++;
 						?>
+						@endforeach
 							</tr>	
 							</tbody>
-						@endforeach
 						</table>
 						</div>
 						</div>

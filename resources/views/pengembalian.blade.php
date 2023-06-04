@@ -56,7 +56,7 @@
 								<div class="mb-3">
 									<label class="form-label">Kode Pengembalian</label>
 									<input type="text" class="form-control" name="text_kodepengembalian"
-										placeholder="Kode Pengembalian" value="" required>
+										placeholder="Kode Pengembalian" value="{{ $k->id_peminjaman }}" readonly>
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Kode Peminjaman</label>

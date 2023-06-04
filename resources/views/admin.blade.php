@@ -34,12 +34,16 @@
 									<td>{{ $p->password }}</td>
 									<td>{{ $p->gambar }}</td>
 								</tr>
+								<?php
+								$i++;
+								?>
+								@endforeach
 							</tbody>
 							<tfoot>
 							</tfoot>
-							<?php
-								$i++;
-								?>
+							</tbody>
+							<tfoot>
+							</tfoot>
 						
 						<!-- Awal Modal -->
 						<div class="modal fade" id="modalTambahData" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -53,11 +57,11 @@
 									</div>
 									<form method="POST" action="admin/create">
 										@csrf
-									<div class="modal-body">
+									<!-- <div class="modal-body">
 										<div class="mb-3">
 											<label class="form-label">ID Admin</label>
 											<input type="text" class="form-control" name="text_id" required>
-										</div>
+										</div> -->
 										<div class="mb-3">
 											<label class="form-label">Nama Admin</label>
 											<input type="text" class="form-control" name="text_namalengkapadmin"
@@ -80,7 +84,6 @@
 								</div>
 							</div>
 						</div>
-						@endforeach
 						</table>
 						<!-- Akhir Modal -->
 						</div>

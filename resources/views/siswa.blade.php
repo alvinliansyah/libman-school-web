@@ -61,7 +61,7 @@
 									<div class="mb-3">
 											<label class="form-label">Kode Kelas</label>
 											<input type="text" class="form-control" name="text_kodekelast"
-												placeholder="Kode Buku" required>
+												placeholder="Kode Kelas" required>
 									</div>
 									<div class="mb-3">
 											<label class="form-label">Tingkatan</label>
@@ -178,9 +178,9 @@
 						<?php
 							$i++;
 							?>
+							@endforeach
 							</tr>	
-							</tbody>
-						@endforeach
+							</tbody>						
 						</table>
 						</div>
 						</div>

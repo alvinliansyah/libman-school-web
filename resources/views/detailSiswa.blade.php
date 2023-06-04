@@ -34,11 +34,11 @@
 									<th>AKSI</th>
 								</tr>
 							</thead>
+							<tbody>
 							<?php
 								$i=1;
 							?>
 							@foreach($siswa as $s)
-							<tbody>
 								<tr>
 								<td><?php echo $i ?></td>
 								<td>{{ $s->NIS }}</td>
@@ -71,7 +71,7 @@
 											<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" class="form-control" name="number_nis1"
 												placeholder="NIS" required>
 										</div>
-</div>
+										</div>
 										<div class="mb-3">
 											<label class="form-label">Nama Siswa</label>
 											<input type="text" class="form-control" name="text_namasiswa1"
@@ -193,11 +193,11 @@
 							</div>
 						</div>
 						<!-- Akhir Modal -->
-						</tr>
 						<?php
 								$i++;
 								?>
 						@endforeach
+						</tr>
 							</tbody>
 						</table>
 						</div>

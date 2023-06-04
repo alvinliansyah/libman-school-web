@@ -13,6 +13,7 @@ use App\Http\Controllers\TentangAplikasiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DetailSiswaController;
+use App\Http\Controllers\DetailBukuController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -86,6 +87,10 @@ Route::post('/siswa/update', [SiswaController::class, 'update'])->name('siswa.up
 Route::post('/siswa/delete', [SiswaController::class, 'delete'])->name('siswa.delete');
 
 Route::get('/detailsiswa/{id_data_kelas}', [SiswaController::class, 'detailSiswa'])->name('detailsiswa');
+
+Route::get('/detailBuku/{id_buku}', [BukuController::class, 'detailBuku'])->name('detailBuku');
+
+Route::post('/detailBuku/create', [DetailBukuController::class, 'create'])->name('detailBuku.create');
 
 
 });
