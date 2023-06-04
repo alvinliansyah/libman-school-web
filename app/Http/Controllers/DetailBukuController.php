@@ -20,6 +20,7 @@ class DetailBukuController extends Controller
         DB::table('detail_buku')->insert([
             'id_buku' => $request->kode_buku1,
             'jumlah' => $request->number_jumlah1,
+            'keterangan' => $request->text_keterangan1,
         ]);
         alert()->success('Sukses','Berhasil Menambahkan Stok buku');
         return back();

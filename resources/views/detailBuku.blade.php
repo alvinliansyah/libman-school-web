@@ -29,6 +29,7 @@
 									<th>NO</th>
 									<th>ID BUKU</th>
 									<th>JUMLAH</th>
+									<th>KETERANGAN</th>
 									<th>INFORMASI WAKTU</th>
 								</tr>
 							</thead>
@@ -41,6 +42,7 @@
 								<td><?php echo $i ?></td>
 								<td>{{ $b->id_buku }}</td>
 								<td>{{ $b->jumlah }}</td>
+								<td>{{ $b->keterangan }}</td>
 								<td>{{ $b->updated_at }}</td>
 								<td>								
 										</td>
@@ -58,9 +60,14 @@
 										@csrf
 									<div class="modal-body">
 										<div class="mb-3">
-											<label class="form-label">jumlah</label>
+											<label class="form-label">Jumlah</label>
 											<input type="number" class="form-control" name="number_jumlah1"
 												placeholder="jumlah" required>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Keterangan</label>
+											<input type="text" class="form-control" name="text_keterangan1"
+												placeholder="Keterangan" required>
 										</div>
 										</div>
 										<div class="mb-3">
