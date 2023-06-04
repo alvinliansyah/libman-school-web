@@ -23,6 +23,7 @@
 									<th>PENERBIT</th>
 									<th>TAHUN TERIMA</th>
 									<th>JUMLAH</th>
+									<th>DESKRIPSI</th>
 									<th>GAMBAR</th>
 									<th>AKSI</th>
 								</tr>
@@ -40,6 +41,7 @@
 									<td>{{ $b->penerbit }}</td>
 									<td>{{ $b->tahun_terima }}</td>
 									<td>{{ $b->jumlah }}</td>
+									<td>{{ $b->deskripsi }}</td>
 									<td>{{ $b->gambar }}</td>
 									<td>
 									<div class="d-grid gap-2 d-md-flex justify-content-md">
@@ -90,6 +92,11 @@
 										<div class="mb-3">
 											<label class="form-label">Jumlah</label>
 											<input type="number" class="form-control" name="text_jumlah" required>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Deskripsi</label>
+											<input type="text" class="form-control" name="text_deskripsi"
+											placeholder="Deskripsi" required>
 										</div>
 										<!-- <div class="mb-3">
 											<label class="form-label">Foto Buku</label>
@@ -153,8 +160,13 @@
 											value='{{$b->jumlah}}' required>
 										</div>
 										<div class="mb-3">
+											<label class="form-label">Deskripsi</label>
+											<input type="text" class="form-control" name="text_deskripsie"
+											value='{{$b->deskripsi}}' placeholder="Deskripsi" required>
+										</div>
+										<div class="mb-3">
 											<label class="form-label">Foto Buku</label>
-											<input id="file-fotobuku" accept="image/*" type="file" class="form-control" name="file_fotobukue" required>
+											<input id="file-fotobuku" accept="image/*" type="file" class="form-control" name="file_fotobukue" value ="{{ $b->gambar }}" required>
 									</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-primary"

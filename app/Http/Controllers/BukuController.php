@@ -25,6 +25,7 @@ class BukuController extends Controller
                 'penerbit' => $request->text_penerbit,
                 'tahun_terima' => $request->text_tahunterima,
                 'jumlah' => $request->text_jumlah,
+                'deskripsi' => $request->text_deskripsi,
                 // 'gambar' => $request->file_fotobuku,
             ]);
             alert()->success('Sukses','Berhasil Menambahkan Buku');
@@ -38,6 +39,7 @@ class BukuController extends Controller
             'penerbit' => $request->text_penerbite,
             'tahun_terima' => $request->text_tahunterimae,
             'jumlah' => $request->text_jumlahe,
+            'deskripsi' => $request->text_deskripsie,
             'gambar' => $request->file_fotobukue->getClientOriginalName(),
         ]);
         $destinationPath = public_path().'/upload' ;
@@ -59,8 +61,11 @@ class BukuController extends Controller
 
     $ambil = DB::table('detail_buku')->where('id_buku', $id_buku)->get();
 
+    $get = DB::table('data_buku')->where('id_buku', $id_buku)->get();
+
     $gambar = DB::table('data_admin')->get();
     
-    return view('detailBuku', ['detail_buku' => $kelas, 'buku' => $ambil, 'gambar'=> $gambar]);
+    return view('detailBuku', ['detail_buku' => $kelas, 'buku' => $ambil, 'get'=> $get, 'gambar'=> $gambar]);
 }
 }
+

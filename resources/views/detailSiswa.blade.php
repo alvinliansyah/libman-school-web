@@ -4,7 +4,9 @@
 			<div class="card float-end shadow" style="height: 3.5rem; width: 8.5rem; top: 10px;">
 			<div class="card-header text-bg-primary" style="padding: 4px"></div>
 			<div class="card-body">
-			<center><p class="card-title" style="font-family: 'Open Sans', sans-serif; font-weight: 1000; font-size: 17px; line-height: 14px;">id kelas : {{ $data_siswa->id_data_kelas }}<strong><a class="divider" style= "color:black; text-decoration: none; font-weight: 600; font-size: 18px; line-height: 10px;"></a></strong></p></center>
+			@foreach($get as $g)
+			<center><p class="card-title" style="font-family: 'Open Sans', sans-serif; font-weight: 1000; font-size: 17px; line-height: 14px;">kelas : {{ $g->tingkatan . $g->kelas}}<strong><a class="divider" style= "color:black; text-decoration: none; font-weight: 600; font-size: 18px; line-height: 10px;"></a></strong></p></center>
+			@endforeach
 			</div>
 			</div>
 			</h1>

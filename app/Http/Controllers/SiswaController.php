@@ -51,8 +51,10 @@ class SiswaController extends Controller
 
     $ambil = DB::table('data_siswa')->where('id_data_kelas', $id_data_kelas)->get();
 
+    $get = DB::table('data_kelas')->where('id_data_kelas', $id_data_kelas)->get();
+
     $gambar = DB::table('data_admin')->get();
     
-    return view('detailSiswa', ['data_siswa' => $siswa, 'siswa' => $ambil, 'gambar'=> $gambar]);
+    return view('detailSiswa', ['data_siswa' => $siswa, 'siswa' => $ambil, 'get'=> $get, 'gambar'=> $gambar]);
 }
 }
