@@ -17,10 +17,13 @@
 									<th>NO</th>
 									<th>KODE PEMINJAMAN</th>
 									<th>NIS</th>
+									<th>NAMA SISWA</th>
 									<th>KODE BUKU</th>
+									<th>JUDUL BUKU</th>
 									<th>JUMLAH</th>
-									<th>TGL PEMINJAMAN</th>
+									<th>TGL PENGEMBALIAN</th>
 									<th>ID ADMIN</th>
+									<th>NAMA ADMIN</th>
 									<th>AKSI</th>
 								</tr>
 							</thead>
@@ -33,10 +36,13 @@
 									<td><?php echo $i ?></td>
 									<td>{{ $k->id_peminjaman }}</td>
 									<td>{{ $k->NIS }}</td>
+									<td>{{ $k->nama_siswa }}</td>		
 									<td>{{ $k->id_buku }}</td>
+									<td>{{ $k->judul_buku }}</td>
 									<td>{{ $k->qty }}</td>
 									<td>{{ $k->tanggal_pengembalian }}</td>
 									<td>{{ $k->id_admin }}</td>
+									<td>{{ $k->nama_admin }}</td>
 									<td>
 											<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSelesaiData<?=$i?>" style= "color:white; text-decoration: none; font-weight: normal;"><i class='bx bx-check-square icon bx-xs'>&nbsp;Selesai</i></button>	
 									</td>
@@ -64,14 +70,16 @@
 										value="{{ $k->id_peminjaman }}" readonly>
 								</div>
 								<div class="mb-3">
-									<label class="form-label">NIS</label>
-									<input type="number" class="form-control" name="number_nis"
-										value="{{ $k->NIS }}" readonly>
+									<label class="form-label">Nama Siswa</label>
+									<input type="text" class="form-control" name="text_kodeadmin"
+										placeholder="Kode Admin" value="{{ $k->nama_siswa }}" readonly>
+										<input type="hidden" name="number_nis" value="{{ $k->NIS }}">
 								</div>
 								<div class="mb-3">
-									<label class="form-label">Kode Buku</label>
-									<input type="text" class="form-control" name="text_kodebuku"
-										value="{{ $k->id_buku }}" readonly>
+									<label class="form-label">Judul Buku</label>
+									<input type="text" class="form-control" name="text_kodeadmin"
+										placeholder="Kode Admin" value="{{ $k->judul_buku }}" readonly>
+										<input type="hidden" name="text_kodebuku" value="{{ $k->id_buku }}">
 								</div>
 								<div class="mb-3">
 									<label class="form-label">Jumlah</label>
@@ -83,9 +91,10 @@
 									<input type="date" class="form-control" name="dt_pengembalian" value="{{ $k->tanggal_pengembalian }}" readonly>
 								</div>
 								<div class="mb-3">
-									<label class="form-label">ID Admin</label>
+									<label class="form-label">Nama Admin</label>
 									<input type="text" class="form-control" name="text_kodeadmin"
-										value="{{ $k->id_admin }}" readonly required>
+										placeholder="Kode Admin" value="{{ $k->nama_admin }}" readonly>
+										<input type="hidden" name="id_admin" value="{{ $k->id_admin }}">
 								</div>
 							</div>
 							<div class="modal-footer">

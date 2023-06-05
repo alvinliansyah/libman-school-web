@@ -12,11 +12,14 @@ class PengembalianController extends Controller
     {
         $dataPeminjaman = DB::table('peminjaman')
         ->join('detail_peminjaman', 'peminjaman.id_peminjaman', '=', 'detail_peminjaman.id_peminjaman')
+        ->join('data_buku', 'data_buku.id_buku', '=', 'detail_peminjaman.id_buku')
+        ->join('data_siswa', 'data_siswa.NIS', '=', 'peminjaman.NIS')
+        ->join('data_admin', 'data_admin.id_admin', '=', 'peminjaman.id_admin')
+        ->select('peminjaman.id_peminjaman', 'peminjaman.NIS', 'detail_peminjaman.id_buku', 'detail_peminjaman.qty', 'peminjaman.tanggal_pengembalian', 'peminjaman.id_admin', 'data_siswa.nama_siswa', 'data_buku.judul_buku', 'data_admin.nama_admin')
         ->whereNotIn('peminjaman.id_peminjaman', function ($query) {
             $query->select('pengembalian.id_peminjaman')
                 ->from('pengembalian');
         })
-        ->select('peminjaman.id_peminjaman', 'peminjaman.tanggal_pengembalian', 'detail_peminjaman.qty', 'peminjaman.NIS', 'detail_peminjaman.id_buku', 'peminjaman.id_admin')
         ->get();
         $gambar = DB::table('data_admin')->get();
 
@@ -29,7 +32,7 @@ class PengembalianController extends Controller
             'id_pengembalian' => $request->text_kodepengembalian,
             'tanggal_pengembalian' => $request->dt_pengembalian,
             'NIS' => $request->number_nis,
-            'id_admin' => $request->text_kodeadmin,
+            'id_admin' => $request->id_admin,
             'id_peminjaman' => $request->text_kodepeminjaman,
         ]);
 
