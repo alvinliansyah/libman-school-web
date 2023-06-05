@@ -18,11 +18,14 @@
 									<th>NO</th>
 									<th>KODE PEMINJAMAN</th>
 									<th>NIS</th>
+									<th>NAMA SISWA</th>
 									<th>KODE BUKU</th>
+									<th>JUDUL BUKU</th>
 									<th>JUMLAH</th>
 									<th>TGL PEMINJAMAN</th>
 									<th>TGL PENGEMBALIAN</th>
 									<th>ID ADMIN</th>
+									<th>NAMA ADMIN</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -34,11 +37,14 @@
 									<td><?php echo $i ?></td>
 									<td>{{ $p->id_peminjaman }}</td>
 									<td>{{ $p->NIS }}</td>
+									<td>{{ $p->nama_siswa }}</td>
 									<td>{{ $p->id_buku }}</td>
+									<td>{{ $p->judul_buku }}</td>
 									<td>{{ $p->qty }}</td>
 									<td>{{ $p->tanggal_peminjaman }}</td>
 									<td>{{ $p->tanggal_pengembalian }}</td>
 									<td>{{ $p->id_admin }}</td>
+									<td>{{ $p->nama_admin }}</td>
 								</tr>
 						<?php
 								$i++;
@@ -62,7 +68,7 @@
 								<div class="mb-3">
 									<label class="form-label">Kode Peminjaman</label>
 									<input type="text" class="form-control" name="text_kodepeminjaman"
-										placeholder="Kode Peminjaman" value="{{$baru}}" readonly>
+										placeholder="Kode Peminjaman" value="{{$baru->baru}}" readonly>
 								</div>
 								<div class="mb-3">
 											<label class="form-label">NAMA SISWA</label>

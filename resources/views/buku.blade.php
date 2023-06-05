@@ -67,6 +67,10 @@
 									<form method="POST" action="buku/create" enctype="multipart/form-data">
 										@csrf
 									<div class="modal-body">
+									<div class="mb-3">
+											<input type="hidden" class="form-control" name="kode_buku"
+											value="{{$baru}}" required>
+										</div>
 										<div class="mb-3">
 											<label class="form-label">Judul</label>
 											<input type="text" class="form-control" name="text_judul"
@@ -153,11 +157,6 @@
 											<label class="form-label">Tahun Terima</label>
 											<input type="text" class="form-control" name="text_tahunterimae"
 											value='{{$b->tahun_terima}}' placeholder="Judul" required>
-										</div>
-										<div class="mb-3">
-											<label class="form-label">Jumlah</label>
-											<input type="number" class="form-control" name="text_jumlahe" 
-											value='{{$b->jumlah}}' required>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Deskripsi</label>

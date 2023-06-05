@@ -12,15 +12,20 @@ class PeminjamanController extends Controller
     {
         $dataPeminjaman = DB::table('peminjaman')
         ->join('detail_peminjaman', 'peminjaman.id_peminjaman', '=', 'detail_peminjaman.id_peminjaman')
-        ->select('peminjaman.id_peminjaman', 'peminjaman.tanggal_peminjaman', 'peminjaman.tanggal_pengembalian', 'detail_peminjaman.qty', 'peminjaman.NIS', 'peminjaman.id_admin', 'detail_peminjaman.id_buku')
+        ->join('data_buku', 'data_buku.id_buku', '=', 'detail_peminjaman.id_buku')
+        ->join('data_siswa', 'data_siswa.NIS', '=', 'peminjaman.NIS')
+        ->join('data_admin', 'data_admin.id_admin', '=', 'peminjaman.id_admin')
+        ->select('peminjaman.id_peminjaman', 'peminjaman.NIS', 'detail_peminjaman.id_buku', 'detail_peminjaman.qty', 'peminjaman.tanggal_peminjaman', 'peminjaman.tanggal_pengembalian', 'peminjaman.id_admin', 'data_siswa.nama_siswa', 'data_buku.judul_buku', 'data_admin.nama_admin')
         ->get();
         $gambar = DB::table('data_admin')->get();
         $buku = DB::table('data_buku')->where('jumlah', '>', 0)->get();
         $siswa = DB::table('data_siswa')->get();
-        $kd_pinjam = DB::table('peminjaman')->max('id_peminjaman');
-        $baru = $kd_pinjam +1;
+        $kd_pinjam = DB::table('peminjaman')
+        ->selectRaw('MAX(id_peminjaman + 1) AS baru')
+        ->whereRaw('CAST(id_peminjaman AS UNSIGNED) > 9')
+        ->first();        
 
-        return view('peminjaman', ['peminjaman' => $dataPeminjaman, 'gambar'=> $gambar, 'buku'=>$buku, 'siswa'=>$siswa, "baru"=>$baru]);
+        return view('peminjaman', ['peminjaman' => $dataPeminjaman, 'gambar'=> $gambar, 'buku'=>$buku, 'siswa'=>$siswa, 'baru'=>$kd_pinjam]);
     }
 
     public function create(Request $request)
